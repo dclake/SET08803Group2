@@ -2,3 +2,4 @@
 
 ## Group Members
 - Dave C. Lake
+- Ruairidh Reid
