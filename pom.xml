@@ -6,7 +6,11 @@
 
     <groupId>com.napier.sem</groupId>
     <artifactId>seMethods</artifactId>
+    <packaging>pom</packaging>
     <version>0.1.0.1</version>
+    <modules>
+        <module>seMethodsProject</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>10</maven.compiler.source>
