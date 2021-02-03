@@ -2,6 +2,6 @@
 
 ## Group Members
 - Dave C. Lake
-- Ruairidh Reid
+- Ruairidh Reid     GMT+0 
 - Mark Clarke       GMT-5
 - Maureen Dudu
