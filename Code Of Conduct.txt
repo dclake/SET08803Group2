@@ -1,4 +1,4 @@
-# Code of ConductFocus of the developer:
+Focus of the developer:
 
 -We create software for users, not for managers;
 -We embrace that we are stronger as a cross-functional team, working towards a shared goal;
