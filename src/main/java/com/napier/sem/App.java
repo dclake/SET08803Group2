@@ -54,6 +54,39 @@ public class App {
             }
         }
     }
+    public Country getEmployee(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Population "
+                            + "FROM world.country "
+                            + "ORDER BY desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            //while
+            if (rset.next())
+            {
+                Country country = new Country();
+                country.country_name = rset.getString("Name");
+                country.Population = rset.getString("Population");
+                return country;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
 
     public static void main(String[] args) {
         // Create new Application
