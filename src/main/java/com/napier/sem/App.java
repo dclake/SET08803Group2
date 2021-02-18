@@ -27,7 +27,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database locally
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=true", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
                 //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -54,7 +54,7 @@ public class App {
             }
         }
     }
-    public Country getEmployee(int ID)
+    public Country getAllCountries()
     {
         try
         {
@@ -64,21 +64,25 @@ public class App {
             String strSelect =
                     "SELECT Name, Population "
                             + "FROM world.country "
-                            + "ORDER BY desc";
+                            + "ORDER BY Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returned
             //while
-            if (rset.next())
+            while (rset.next())
             {
                 Country country = new Country();
                 country.country_name = rset.getString("Name");
                 country.Population = rset.getString("Population");
-                return country;
+
+                System.out.println(country.country_name + "\t"
+                        + country.Population)
+                ;
+              // return country;
             }
-            else
-                return null;
+            //else
+              //  return null;
         }
         catch (Exception e)
         {
@@ -86,6 +90,12 @@ public class App {
             System.out.println("Failed to get employee details");
             return null;
         }
+        return null;
+    }
+    public void allCountries()
+    {
+
+       // System.out.println(Country.country_name);
     }
 
     public static void main(String[] args) {
@@ -94,8 +104,12 @@ public class App {
 
         // Connect to database
         a.connect();
+       
+        a.getAllCountries();
+       // a.allCountries();
 
         // Disconnect from database
         a.disconnect();
     }
+
 }
