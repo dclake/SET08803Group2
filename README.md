@@ -2,8 +2,7 @@
 
 - Master Build Status [![Build Status](https://travis-ci.org/kevin-chalmers/sem.svg?branch=master)](https://travis-ci.com/dclake/SET08803Group2)
 - Licence [![LICENSE](https://img.shields.io/github/license/dclake/SET08803.svg?style=flat-square)](https://github.com/dclake/SET08803Group2/blob/main/LICENSE)
-- Release [![Releases](https://img.shields.io/github/release/dclake/SET08803/all.svg?style=flat-square)](https://github.com/dclake/SET08803Group2/releases)
-
+- Release ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/dclake/SET08803Group2?include_prereleases)
 ## Group Members
 - Dave C. Lake	    GMT-4
 - Ruairidh Reid     GMT+0 
