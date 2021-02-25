@@ -10,5 +10,5 @@
   
 - Maureen Dudu
 
-- Project Sprint board https://trello.com/b/noPmQ0pk/project-sprint-board
+- Project Sprint board/Kanban Board https://zube.io/napierproject/napier-group-2/w/project-workspace/kanban
 
