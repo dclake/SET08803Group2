@@ -34,7 +34,7 @@ public class App {
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -100,7 +100,7 @@ public class App {
     {
         // Print header
         System.out.println("______________________________________________________________");
-        System.out.println(String.format("%-50s %-15s ", "Country", "Polulation"));
+        System.out.println(String.format("%-50s %-15s ", "Country", "Population"));
         System.out.println("______________________________________________________________");
         // Loop over all countries in the list
         for (Country country : countries)
