@@ -7,7 +7,7 @@
 - Dave C. Lake	    GMT-4
 - Ruairidh Reid     GMT+0 
 - Mark Clarke       GMT-5
-  
+- Majid Iqbal       GMT+3  
 - Maureen Dudu
 
 - Project Sprint board/Kanban Board https://zube.io/napierproject/napier-group-2/w/project-workspace/kanban
