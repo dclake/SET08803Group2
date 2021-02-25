@@ -27,10 +27,10 @@ public class App {
             try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
-                // Connect to database locally
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                // Connect to database locally for testing
+                //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
-                //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -92,6 +92,25 @@ public class App {
         }
     }
 
+    /**
+     * Prints a list of countries and population from largest to smallest.
+     * @param countries The list of countries to print.
+     */
+    public void printCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("______________________________________________________________");
+        System.out.println(String.format("%-50s %-15s ", "Country", "Polulation"));
+        System.out.println("______________________________________________________________");
+        // Loop over all countries in the list
+        for (Country country : countries)
+        {
+            String countries_string =
+                    String.format("%-50s %-15s ",
+                            country.country_name, country.Population);
+            System.out.println(countries_string);
+        }
+    }
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -102,8 +121,9 @@ public class App {
         // Extract country population information
         ArrayList<Country> countries = a.getCountryByPopulation();
 
-        // Test the size of the returned data - should be 240124
-        System.out.println(countries.size());
+        // Test the size of the returned data - should be 239
+        //System.out.println(countries.size());
+        a.printCountries(countries);
 
 
         // Disconnect from database
