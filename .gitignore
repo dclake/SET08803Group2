@@ -32,12 +32,9 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-<<<<<<< HEAD
+seMethods.iml
+
 
 .idea/
 
-=======
-seMethodsGroup2.iml.iml
 
-.idea/
->>>>>>> addapp
