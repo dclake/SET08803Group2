@@ -19,5 +19,5 @@ public class Country {
     /**
      * Population
      */
-    public String Population;
+    public Integer Population;
 }

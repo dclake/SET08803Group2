@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App {
     /**
@@ -55,6 +56,41 @@ public class App {
         }
     }
 
+    /**
+     * Gets all Countries and Polulations from largest to smallest.
+     * @return A list of all countries and populations, or null if there is an error.
+     */
+    public ArrayList<Country> getCountryByPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Population "
+                            + "FROM world.country "
+                            + "ORDER BY Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_name = rset.getString("country.name");
+                country.Population = rset.getInt("country.Population");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
 
     public static void main(String[] args) {
         // Create new Application
@@ -62,6 +98,12 @@ public class App {
 
         // Connect to database
         a.connect();
+
+        // Extract country population information
+        ArrayList<Country> countries = a.getCountryByPopulation();
+
+        // Test the size of the returned data - should be 240124
+        System.out.println(countries.size());
 
 
         // Disconnect from database
