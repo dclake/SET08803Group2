@@ -1,0 +1,18 @@
+@startuml
+
+actor WHO as "Medical Officer"
+
+rectangle Database
+
+rectangle "City System" {
+    usecase UC4 as "Get Cities
+	by population"
+
+    usecase UCa as "Print cities"
+
+    WHO - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml

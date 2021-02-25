@@ -1,0 +1,20 @@
+@startuml
+
+actor WHO as "Planner/Medical Officer"
+
+rectangle Database
+
+rectangle "Country System" {
+    usecase UC4 as "Get Countries
+	by population"
+
+
+
+    usecase UCa as "Print countries"
+
+    WHO - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
