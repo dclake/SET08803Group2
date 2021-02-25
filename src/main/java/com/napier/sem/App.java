@@ -28,9 +28,9 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database locally for testing
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
-                //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -68,8 +68,10 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM world.country "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Capital = city.ID "
                             + "ORDER BY Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -83,6 +85,7 @@ public class App {
                 country.continent = rset.getString("country.continent");
                 country.Region = rset.getString("country.Region");
                 country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
                 countries.add(country);
             }
             return countries;
@@ -102,15 +105,15 @@ public class App {
     public void printCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("________________________________________________________________________________________________________________");
-        System.out.println(String.format("%4s %-52s %-15s %-26s %-15s", "Code", "Country", "Continent", "Region", "Population"));
-        System.out.println("_________________________________________________________________________________________________________________");
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        System.out.println(String.format("%4s %-52s %-15s %-26s %-15s %35s", "Code", "Country", "Continent", "Region", "Population", "Capital City"));
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (Country country : countries)
         {
             String countries_string =
-                    String.format("%4s %-52s %-15s %-26s %-15s",
-                            country.country_code, country.country_name, country.continent, country.Region, country.Population);
+                    String.format("%4s %-52s %-15s %-26s %-15s %35s",
+                            country.country_code, country.country_name, country.continent, country.Region, country.Population, country.Capital);
             System.out.println(countries_string);
         }
     }
