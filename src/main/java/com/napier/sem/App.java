@@ -28,9 +28,9 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database locally for testing
-                //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -68,7 +68,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Population "
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM world.country "
                             + "ORDER BY Population desc";
             // Execute SQL statement
@@ -78,7 +78,10 @@ public class App {
             while (rset.next())
             {
                 Country country = new Country();
+                country.country_code = rset.getString("country.code");
                 country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
                 country.Population = rset.getInt("country.Population");
                 countries.add(country);
             }
@@ -99,15 +102,15 @@ public class App {
     public void printCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("______________________________________________________________");
-        System.out.println(String.format("%-50s %-15s ", "Country", "Population"));
-        System.out.println("______________________________________________________________");
+        System.out.println("________________________________________________________________________________________________________________");
+        System.out.println(String.format("%4s %-52s %-15s %-26s %-15s", "Code", "Country", "Continent", "Region", "Population"));
+        System.out.println("_________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (Country country : countries)
         {
             String countries_string =
-                    String.format("%-50s %-15s ",
-                            country.country_name, country.Population);
+                    String.format("%4s %-52s %-15s %-26s %-15s",
+                            country.country_code, country.country_name, country.continent, country.Region, country.Population);
             System.out.println(countries_string);
         }
     }
