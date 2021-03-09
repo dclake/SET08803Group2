@@ -3,7 +3,8 @@ services:
   # Application Dockerfile is in same folder which is .
   app:
     build: .
-
+    ports:
+      - "8080:8080"
   # db is is db folder
   db:
     build: db/.
