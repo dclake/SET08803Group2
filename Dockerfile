@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/seMethodsGroup2-0.1.0.4.jar /tmp
+COPY ./out/artifacts/seMethodsGroup2_jar/seMethodsGroup2.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "seMethodsGroup2-0.1.0.4.jar"]
+ENTRYPOINT ["java", "-jar", "seMethodsGroup2.jar"]
