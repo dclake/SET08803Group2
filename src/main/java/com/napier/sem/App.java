@@ -3,11 +3,14 @@ package com.napier.sem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.ConfigurableApplicationContext;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.io.IOException;
 
 @SpringBootApplication
 @RestController
@@ -126,7 +129,7 @@ public class App {
             System.out.println(countries_string);
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException  {
         // Connect to database
         if (args.length < 1)
         {
@@ -136,8 +139,16 @@ public class App {
         {
             //connect(args[0]);
         }
+        String command = "curl http://app:8080/countries";
 
-        SpringApplication.run(App.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
+        System.out.println("http://localhost/employees.html");
+        ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
+        processBuilder.start();
+        //let process run then close spring app so that travis exits build
+        Thread.sleep(30000);
+        ctx.close();
+        System.out.println("app closed");
         // Create new Application
        // App a = new App();
 
