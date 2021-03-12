@@ -1,18 +1,29 @@
 package com.napier.sem;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.ConfigurableApplicationContext;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.io.IOException;
 
+@SpringBootApplication
+@RestController
 public class App {
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    private static Connection con = null;
 
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
+    public static void connect() {
         try {
             // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -45,7 +56,7 @@ public class App {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect() {
+    public static void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -60,6 +71,7 @@ public class App {
      * Gets all Countries and Polulations from largest to smallest.
      * @return A list of all countries and populations, or null if there is an error.
      */
+    @RequestMapping("countries")
     public ArrayList<Country> getCountryByPopulation()
     {
         try
@@ -117,23 +129,42 @@ public class App {
             System.out.println(countries_string);
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException  {
+        // Connect to database
+        if (args.length < 1)
+        {
+            connect();
+        }
+        //else
+        {
+            //connect(args[0]);
+        }
+        String command = "curl http://app:8080/countries";
+
+        ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
+        System.out.println("http://localhost/employees.html");
+        ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
+        processBuilder.start();
+        //let process run then close spring app so that travis exits build
+        Thread.sleep(30000);
+        ctx.close();
+        System.out.println("app closed");
         // Create new Application
-        App a = new App();
+       // App a = new App();
 
         // Connect to database
-        a.connect();
+      //  a.connect();
 
         // Extract country population information
-        ArrayList<Country> countries = a.getCountryByPopulation();
+        //ArrayList<Country> countries = a.getCountryByPopulation();
 
         // Test the size of the returned data - should be 239
         //System.out.println(countries.size());
-        a.printCountries(countries);
+       // a.printCountries(countries);
 
 
         // Disconnect from database
-        a.disconnect();
+        //a.disconnect();
     }
 
 }

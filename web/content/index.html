@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<div class="mypanel"></div>
+</body>
+
+<script>
+    $.getJSON('http://time.jsontest.com', function(data) {
+
+        var text = `Date: ${data.date}<br>
+                    Time: ${data.time}<br>
+                    Unix time: ${data.milliseconds_since_epoch}`
+
+
+        $(".mypanel").html(text);
+    });
+</script>
+
+</html>
