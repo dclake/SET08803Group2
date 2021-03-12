@@ -40,9 +40,9 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database locally for testing
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
-                //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -179,11 +179,11 @@ public class App {
         {
             //connect(args[0]);
         }
-        //String command = "curl http://app:8080/countriesbycontinet?continent=Africa";
-        SpringApplication.run(App.class, args);
+        String command = "curl http://app:8080/countriesbycontinet?continent=Africa";
+       // SpringApplication.run(App.class, args);
 
-        //ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
-       // System.out.println("http://localhost/employees.html");
+        ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
+       System.out.println("http://localhost/countries.html");
         //ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
         //processBuilder.start();
         //let process run then close spring app so that travis exits build
