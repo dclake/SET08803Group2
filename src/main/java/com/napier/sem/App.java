@@ -184,12 +184,12 @@ public class App {
 
         ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
        System.out.println("http://localhost/countries.html");
-        //ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
-        //processBuilder.start();
+        ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
+        processBuilder.start();
         //let process run then close spring app so that travis exits build
-       // Thread.sleep(30000);
-        //ctx.close();
-        //System.out.println("app closed");
+        Thread.sleep(30000);
+        ctx.close();
+        System.out.println("app closed");
         // Create new Application
        // App a = new App();
 
