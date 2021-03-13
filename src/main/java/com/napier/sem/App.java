@@ -179,7 +179,7 @@ public class App {
         {
             //connect(args[0]);
         }
-        String command = "curl http://app:8080/countriesbycontinet?continent=Africa";
+        String command = "curl http://app:8080/countriesbycontinent?continent=Africa";
        // SpringApplication.run(App.class, args);
 
         ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
