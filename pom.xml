@@ -7,7 +7,7 @@
     <groupId>com.napier.sem</groupId>
     <artifactId>seMethodsGroup2</artifactId>
 
-    <version>0.1.0.5</version>
+    <version>0.1.0.6</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Countries By Population</title>
+    <title>Countries By Population and Continent</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,15 +25,32 @@
     </style>
 </head>
 <body>
-<h1>Countries by Continent</h1>
-<div class="showData">Waiting</div>
+<h1>Countries by Population & Continent</h1>
+<form action="/countriesbycontinent.html">
+    <label for="continent">Choose a Continent:</label>
+    <select id="continent" name="continent">
+        <option value="Africa">Africa</option>
+        <option value="Antarctica" selected="selected">Antarctica</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="North America">North America</option>
+        <option value="Oceania">Oceania</option>
+        <option value="South America">South America</option>
+    </select>
+    </br>
+    <input type="submit" value="Submit">
+</form>
+</br>
+<h2>Country Data</h2>
+</br>
+<!--<div class="urldata">Waiting</div>-->
 <div class="showData">...</div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var title = urlParams.get('title');
+    var continent = urlParams.get('continent');
 
-    var URL = "http://" + window.location.hostname + "/app/countries";
+    var URL = "http://" + window.location.hostname + "/app/countriesbycontinent?continent=" + continent;
 
     //show url
 

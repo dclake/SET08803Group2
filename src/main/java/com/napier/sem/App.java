@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -109,7 +110,46 @@ public class App {
             return null;
         }
     }
-
+    @RequestMapping("countriesbycontinent")
+    public ArrayList<Country> getCountryByContinet(@RequestParam  String continent)
+    {
+        try
+        {
+            //System.out.println("Request for all countries in " + continent +);
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Continent Like '" + continent + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_code = rset.getString("country.code");
+                country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
+                country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -139,10 +179,11 @@ public class App {
         {
             //connect(args[0]);
         }
-        String command = "curl http://app:8080/countries";
+        String command = "curl http://app:8080/countriesbycontinent?continent=Africa";
+       // SpringApplication.run(App.class, args);
 
         ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
-        System.out.println("http://localhost/employees.html");
+       System.out.println("http://localhost/countries.html");
         ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
         processBuilder.start();
         //let process run then close spring app so that travis exits build
