@@ -1,0 +1,36 @@
+USE CASE: Produce a Report on the n populated countries in a region
+CHARACTERISTIC INFORMATION
+Goal in Context
+As a planner with the WHO I want to produce a report of all the countries in a region by largest population to the smallest so that I can support COVID19 vaccine distribution.
+
+Scope
+Company.
+
+Level
+Primary task.
+
+Preconditions
+Database contains current values of the population.
+
+Success End Condition
+A report is available for HR to provide to finance.
+
+Failed End Condition
+No choice possible
+
+Primary Actor
+Who Planer
+
+Trigger
+Covid 19 Pandemic
+
+MAIN SUCCESS SCENARIO
+Rollout of vaccine to everyone.
+EXTENSIONS
+None.
+
+SUB-VARIATIONS
+None.
+
+SCHEDULE
+DUE DATE: Release 1.0
