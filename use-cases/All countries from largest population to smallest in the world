@@ -1,4 +1,4 @@
-USE CASE: Produce a Report on the n populated countries in a world
+USE CASE: Produce a Report on the n populated countries in the world
 CHARACTERISTIC INFORMATION
 Goal in Context
 As a planner with the WHO I want to produce a report of all the countries in the world by largest population to the smallest so that I can support COVID19 vaccine distribution.
