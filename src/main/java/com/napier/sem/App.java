@@ -150,6 +150,46 @@ public class App {
             return null;
         }
     }
+    @RequestMapping("countriesbyregion")
+    public ArrayList<Country> getCountryByRegion(@RequestParam  String region)
+    {
+        try
+        {
+            //System.out.println("Request for all countries in " + continent +);
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Region Like '" + region + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_code = rset.getString("country.code");
+                country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
+                country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -179,7 +219,7 @@ public class App {
         {
             //connect(args[0]);
         }
-        String command = "curl http://app:8080/countriesbycontinent?continent=Africa";
+        String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
        // SpringApplication.run(App.class, args);
 
         ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
