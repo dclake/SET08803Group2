@@ -1,20 +1,20 @@
 package com.napier.sem;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.context.ConfigurableApplicationContext;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-@SpringBootApplication
-@RestController
+//@SpringBootApplication
+//@RestController
 public class App {
     /**
      * Connection to MySQL database.
@@ -72,7 +72,7 @@ public class App {
      * Gets all Countries and Polulations from largest to smallest.
      * @return A list of all countries and populations, or null if there is an error.
      */
-    @RequestMapping("countries")
+    //@RequestMapping("countries")
     public ArrayList<Country> getCountryByPopulation()
     {
         try
@@ -110,8 +110,8 @@ public class App {
             return null;
         }
     }
-    @RequestMapping("countriesbycontinent")
-    public ArrayList<Country> getCountryByContinet(@RequestParam  String continent)
+    //@RequestMapping("countriesbycontinent")
+    public ArrayList<Country> getCountryByContinet( String continent)
     {
         try
         {
@@ -150,8 +150,48 @@ public class App {
             return null;
         }
     }
-    @RequestMapping("countriesbyregion")
-    public ArrayList<Country> getCountryByRegion(@RequestParam  String region)
+    public ArrayList<Country> getTopNCountryByContinet(  String continent, int N)
+    {
+        try
+        {
+            //System.out.println("Request for all countries in " + continent +);
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Continent Like '" + continent + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY Population desc "
+                            + "LIMIT 0, " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_code = rset.getString("country.code");
+                country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
+                country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+   // @RequestMapping("countriesbyregion")
+    public ArrayList<Country> getCountryByRegion(  String region)
     {
         try
         {
@@ -259,7 +299,7 @@ public class App {
             a.connect();
 
             // Extract country population information
-            ArrayList<Country> countries = a.getTopNCountryByPopulation(6);
+            ArrayList<Country> countries = a.getTopNCountryByContinet("Africa",6);
 
             // Test the size of the returned data - should be 239
             System.out.println(countries.size());
