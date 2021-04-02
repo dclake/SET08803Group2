@@ -314,6 +314,11 @@ public class App {
      */
     public void printCountries(ArrayList<Country> countries)
     {
+        // Check countries is not null
+        if (countries == null) {
+            System.out.println("No countries");
+            return;
+        }
         // Print header
         System.out.println("___________________________________________________________________________________________________________________________________________________");
         System.out.println(String.format("%4s %-52s %-15s %-26s %-15s %35s", "Code", "Country", "Continent", "Region", "Population", "Capital City"));
