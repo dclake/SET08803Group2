@@ -23,4 +23,10 @@ public class AppTest
     {
         app.printCountries(null);
     }
+    @Test
+    void printCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        app.printCountries(countries);
+    }
 }
