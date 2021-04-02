@@ -259,7 +259,7 @@ public class App {
             a.connect();
 
             // Extract country population information
-            ArrayList<Country> countries = a.getTopNCountryByPopulation(5);
+            ArrayList<Country> countries = a.getTopNCountryByPopulation(6);
 
             // Test the size of the returned data - should be 239
             System.out.println(countries.size());
