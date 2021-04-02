@@ -36,4 +36,17 @@ public class AppTest
         countries.add(null);
         app.printCountries(countries);
     }
+    @Test
+    void printCountries()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        Country country = new Country();
+        country.country_code = "CUB";
+        country.country_name = "Cuba";
+        country.continent = "North America";
+        country.Population = 11201000;
+        country.Capital = "La Habana";
+        countries.add(country);
+        app.printCountries(countries);
+    }
 }
