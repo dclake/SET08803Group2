@@ -230,6 +230,46 @@ public class App {
             return null;
         }
     }
+    public ArrayList<Country> getTopNCountryByRegion(  String region, int N)
+    {
+        try
+        {
+            //System.out.println("Request for all countries in " + continent +);
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Region Like '" + region + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY Population desc "
+                            + "LIMIT 0, " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_code = rset.getString("country.code");
+                country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
+                country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
     public ArrayList<Country> getTopNCountryByPopulation(int N)
     {
         try
@@ -299,7 +339,7 @@ public class App {
             a.connect();
 
             // Extract country population information
-            ArrayList<Country> countries = a.getTopNCountryByContinet("Africa",6);
+            ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
 
             // Test the size of the returned data - should be 239
             System.out.println(countries.size());
