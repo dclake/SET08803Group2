@@ -326,6 +326,8 @@ public class App {
         // Loop over all countries in the list
         for (Country country : countries)
         {
+            if (country == null)
+                continue;
             String countries_string =
                     String.format("%4s %-52s %-15s %-26s %-15s %35s",
                             country.country_code, country.country_name, country.continent, country.Region, country.Population, country.Capital);
