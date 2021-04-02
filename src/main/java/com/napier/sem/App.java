@@ -40,9 +40,9 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database locally for testing
-                //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -190,6 +190,44 @@ public class App {
             return null;
         }
     }
+    public ArrayList<Country> getTopNCountryByPopulation(int N)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, "
+                            + "country.Population, country.Capital, city.ID, city.Name as CapitalCity "
+                            + "FROM world.country, world.city "
+                            + "where country.Capital = city.ID "
+                            + "ORDER BY Population desc "
+                            + "LIMIT 0, "+ N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.country_code = rset.getString("country.code");
+                country.country_name = rset.getString("country.name");
+                country.continent = rset.getString("country.continent");
+                country.Region = rset.getString("country.Region");
+                country.Population = rset.getInt("country.Population");
+                country.Capital = rset.getString("CapitalCity");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -213,35 +251,49 @@ public class App {
         // Connect to database
         if (args.length < 1)
         {
-            connect();
+            //connect();
+            // Create new Application
+            App a = new App();
+
+            // Connect to database
+            a.connect();
+
+            // Extract country population information
+            ArrayList<Country> countries = a.getTopNCountryByPopulation(5);
+
+            // Test the size of the returned data - should be 239
+            System.out.println(countries.size());
+             a.printCountries(countries);
         }
         //else
         {
             //connect(args[0]);
         }
-        String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
-       // SpringApplication.run(App.class, args);
+        //String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
+        // SpringApplication.run(App.class, args);
 
-        ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
-       System.out.println("http://localhost/countries.html");
-        ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
-        processBuilder.start();
+
+
+        //ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
+        //System.out.println("http://localhost/countries.html");
+        //ProcessBuilder processBuilder = new ProcessBuilder(command.split(" ")).inheritIO();
+        //processBuilder.start();
         //let process run then close spring app so that travis exits build
-        Thread.sleep(30000);
-        ctx.close();
-        System.out.println("app closed");
+        //Thread.sleep(30000);
+        //ctx.close();
+        //System.out.println("app closed");
         // Create new Application
-       // App a = new App();
+        //App a = new App();
 
         // Connect to database
-      //  a.connect();
+        //a.connect();
 
         // Extract country population information
         //ArrayList<Country> countries = a.getCountryByPopulation();
 
         // Test the size of the returned data - should be 239
         //System.out.println(countries.size());
-       // a.printCountries(countries);
+        //a.printCountries(countries);
 
 
         // Disconnect from database
