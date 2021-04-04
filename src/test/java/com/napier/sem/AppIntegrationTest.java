@@ -18,6 +18,11 @@ public class AppIntegrationTest
         app = new App();
         app.connect("localhost:33060");
     }
+    @Test
+    void unitTest2()
+    {
+        assertEquals(5, 5);
+    }
 
 
 }
