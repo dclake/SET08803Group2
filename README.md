@@ -5,7 +5,7 @@
 - Develop Build Status [![Build Status](https://www.travis-ci.com/dclake/SET08803Group2.svg?branch=main)](https://www.travis-ci.com/dclake/SET08803Group2)
 - Licence [![LICENSE](https://img.shields.io/github/license/dclake/SET08803Group2.svg?style=flat-square)](https://github.com/dclake/SET08803Group2/blob/main/LICENSE)
 - Release ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/dclake/SET08803Group2?include_prereleases)
-
+- Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/main/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
 
 ## Group Members
 - Dave C. Lake	    GMT-4
