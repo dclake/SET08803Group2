@@ -52,4 +52,20 @@ public class AppIntegrationTest {
             });
 
     }
-}
+    @Test
+    void getTopNCountryByContinetIntegrationTest() {
+        ArrayList<Country> countries = app.getTopNCountryByContinet("Africa",4);
+
+        assertEquals(4, countries.size());
+
+        countries.forEach(Country -> {
+            assertNotNull(Country.country_code);
+            assertNotNull(Country.country_name);
+            assertNotNull(Country.continent);
+            assertNotNull(Country.Region);
+            assertNotEquals(-1, Country.Population);
+            // assertTrue(Country.Capital instanceof City);
+        });
+    }
+
+    }
