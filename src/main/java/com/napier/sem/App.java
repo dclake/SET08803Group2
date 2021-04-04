@@ -361,9 +361,9 @@ public class App {
             System.out.println(countries.size());
              a.printCountries(countries);
         }
-        //else
+        else
         {
-            //connect(args[0]);
+            connect(args[0]);
         }
         //String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
         // SpringApplication.run(App.class, args);
