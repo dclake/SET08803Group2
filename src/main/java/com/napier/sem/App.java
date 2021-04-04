@@ -47,7 +47,7 @@ public class App {
                 //con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 // Connect to database via Docker
                 //con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }

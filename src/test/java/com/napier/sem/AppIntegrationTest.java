@@ -19,9 +19,19 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
     @Test
-    void unitTest2()
-    {
-        assertEquals(5, 5);
+    void CountryPopulationReportIntegrationTest() {
+        ArrayList<Country> countries = app.getCountryByPopulation();
+
+        assertEquals(232, countries.size());
+
+        countries.forEach(Country -> {
+            assertNotNull(Country.country_code);
+            assertNotNull(Country.country_name);
+            assertNotNull(Country.continent);
+            assertNotNull(Country.Region);
+            assertNotEquals(-1, Country.Population);
+           // assertTrue(Country.Capital instanceof City);
+        });
     }
 
 
