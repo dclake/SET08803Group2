@@ -360,13 +360,17 @@ public class App {
 
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
-            ArrayList<City> cities = City.getWorldCities();
+            ArrayList<City> cities = City.getContinentCities("Africa");
+            City.printCities(cities);
+
+
+
 
 
             // Test the size of the returned data - should be 239
           //  System.out.println(countries.size());
            //  a.printCountries(countries);
-             City.printCities(cities);
+            // City.printCities(cities);
         }
         else
         {
