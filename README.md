@@ -5,8 +5,8 @@
 - Develop Build Status [![Build Status](https://www.travis-ci.com/dclake/SET08803Group2.svg?branch=main)](https://www.travis-ci.com/dclake/SET08803Group2)
 - Licence [![LICENSE](https://img.shields.io/github/license/dclake/SET08803Group2.svg?style=flat-square)](https://github.com/dclake/SET08803Group2/blob/main/LICENSE)
 - Release ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/dclake/SET08803Group2?include_prereleases)
-- Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/main/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
-
+- Master Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/main/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
+- Develop Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/develop/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
 ## Group Members
 - Dave C. Lake	    GMT-4
 - Ruairidh Reid     GMT+0 
@@ -32,8 +32,8 @@
 | 9     | All the cities in a region organised by largest population to smallest. | Yes | image |
 | 10    | All the cities in a country organised by largest population to smallest. | Yes | image |
 | 11    | All the cities in a district organised by largest population to smallest. | Yes | image |
-| 12    | The top N populated cities in the world where N is provided by the user. | Yes | image |
-| 13    | The top N populated cities in a continent where N is provided by the user. 
+| 12    | The top N populated cities in the world where N is provided by the user.
+| 13    | The top N populated cities in a continent where N is provided by the user.
 | 14    | The top N populated cities in a region where N is provided by the user.
 | 15    | The top N populated cities in a country where N is provided by the user.
 | 16    | The top N populated cities in a district where N is provided by the user.
