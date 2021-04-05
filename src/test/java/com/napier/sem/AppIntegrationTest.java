@@ -138,7 +138,7 @@ public class AppIntegrationTest {
             assertNotNull(City.getCity_name());
             assertNotNull(City.getCountry_name());
             assertNotNull(City.getDistrict());
-            assertNotNull(City.getPopulation();
+            assertNotNull(City.getPopulation());
         });
     }
         @AfterAll
