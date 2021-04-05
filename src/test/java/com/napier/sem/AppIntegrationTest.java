@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,9 +53,32 @@ public class AppIntegrationTest {
         });
 
     }
+    @Test
+    void getCountryByContinentNullIntegrationTest() {
+        Country country = null;
+        ArrayList<Country> countries = app.getCountryByContinet("Fake");
+        //assertThat(Country).isEqualTo(null);
+       // asserte(countries);
+
+       assertEquals(0, countries.size());
+        //assertEquals();
+
+       // countries.forEach(Country -> {
+       //     assertNotNull(Country.country_code);
+       //     assertNotNull(Country.country_name);
+       //     assertNotNull(Country.continent);
+       //     assertNotNull(Country.Region);
+       //     assertNotEquals(-1, Country.Population);
+            // assertTrue(Country.Capital instanceof City);
+        //});
+
+
+
+        }
+
 
     @Test
-    void getTopNCountryByContinetIntegrationTest() {
+    void getTopNCountryByContinentIntegrationTest() {
         ArrayList<Country> countries = app.getTopNCountryByContinet("Africa", 4);
 
         assertEquals(4, countries.size());
