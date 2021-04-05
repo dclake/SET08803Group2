@@ -128,6 +128,19 @@ public class AppIntegrationTest {
             // assertTrue(Country.Capital instanceof City);
         });
     }
+    @Test
+    void getWorldCitiesIntegrationTest() {
+        ArrayList<City> cities = City.getWorldCities();
+
+        assertEquals(4079, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation();
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
