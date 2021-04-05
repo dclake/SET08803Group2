@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
@@ -54,27 +55,17 @@ public class AppIntegrationTest {
 
     }
     @Test
-    void getCountryByContinentNullIntegrationTest() {
-        Country country = null;
-        ArrayList<Country> countries = app.getCountryByContinet("Fake");
-        //assertThat(Country).isEqualTo(null);
-       // asserte(countries);
-
-       assertEquals(0, countries.size());
-        //assertEquals();
-
-       // countries.forEach(Country -> {
-       //     assertNotNull(Country.country_code);
-       //     assertNotNull(Country.country_name);
-       //     assertNotNull(Country.continent);
-       //     assertNotNull(Country.Region);
-       //     assertNotEquals(-1, Country.Population);
-            // assertTrue(Country.Capital instanceof City);
-        //});
-
-
-
+    public void someTest() {
+        try {
+           ArrayList <Country> countries= app.getCountryByPopulation();
         }
+        catch (Exception e) {
+           // throw Exception;
+            Assert.isNull(app.getCountryByPopulation());
+           // Assert.doesNotContain("Exception " + e);
+        }
+    }
+    
 
 
     @Test
