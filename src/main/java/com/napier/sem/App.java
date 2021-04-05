@@ -20,6 +20,10 @@ public class App {
      * Connection to MySQL database.
      */
     private static Connection con = null;
+    public static java.sql.Connection getCon()
+    {
+        return con;
+    }
 
     /**
      * Connect to the MySQL database.
@@ -355,11 +359,14 @@ public class App {
             a.connect("localhost:33060");
 
             // Extract country population information
-            ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
+           // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
+            ArrayList<City> cities = City.getWorldCities();
+
 
             // Test the size of the returned data - should be 239
-            System.out.println(countries.size());
-             a.printCountries(countries);
+          //  System.out.println(countries.size());
+           //  a.printCountries(countries);
+             City.printCities(cities);
         }
         else
         {
