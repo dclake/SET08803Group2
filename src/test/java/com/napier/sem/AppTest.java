@@ -48,6 +48,12 @@ public class AppTest
         app.printCountries(countries);
     }
     @Test
+    void printCitiesTestContainsNull() {
+        ArrayList<City> cities = new ArrayList<City>();
+        cities.add(null);
+        City.printCities(cities);
+    }
+    @Test
     void printCountries()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
