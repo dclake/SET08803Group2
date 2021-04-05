@@ -98,6 +98,21 @@ public class AppIntegrationTest {
             // assertTrue(Country.Capital instanceof City);
         });
     }
+    @Test
+    void getTopNCountryByRegionIntegrationTest() {
+        ArrayList<Country> countries = app.getTopNCountryByRegion("Caribbean",4);
+
+        assertEquals(4, countries.size());
+
+        countries.forEach(Country -> {
+            assertNotNull(Country.country_code);
+            assertNotNull(Country.country_name);
+            assertNotNull(Country.continent);
+            assertNotNull(Country.Region);
+            assertNotEquals(-1, Country.Population);
+            // assertTrue(Country.Capital instanceof City);
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
