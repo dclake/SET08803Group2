@@ -36,25 +36,26 @@ public class AppIntegrationTest {
         });
     }
 
-        @Test
-        void getCountryByContinetIntegrationTest() {
-            ArrayList<Country> countries = app.getCountryByContinet("Africa");
+    @Test
+    void getCountryByContinetIntegrationTest() {
+        ArrayList<Country> countries = app.getCountryByContinet("Africa");
 
-            assertEquals(57, countries.size());
+        assertEquals(57, countries.size());
 
-            countries.forEach(Country -> {
-                assertNotNull(Country.country_code);
-                assertNotNull(Country.country_name);
-                assertNotNull(Country.continent);
-                assertNotNull(Country.Region);
-                assertNotEquals(-1, Country.Population);
-                // assertTrue(Country.Capital instanceof City);
-            });
+        countries.forEach(Country -> {
+            assertNotNull(Country.country_code);
+            assertNotNull(Country.country_name);
+            assertNotNull(Country.continent);
+            assertNotNull(Country.Region);
+            assertNotEquals(-1, Country.Population);
+            // assertTrue(Country.Capital instanceof City);
+        });
 
     }
+
     @Test
     void getTopNCountryByContinetIntegrationTest() {
-        ArrayList<Country> countries = app.getTopNCountryByContinet("Africa",4);
+        ArrayList<Country> countries = app.getTopNCountryByContinet("Africa", 4);
 
         assertEquals(4, countries.size());
 
@@ -67,5 +68,24 @@ public class AppIntegrationTest {
             // assertTrue(Country.Capital instanceof City);
         });
     }
+    @Test
+    void getCountryByRegionIntegrationTest() {
+        ArrayList<Country> countries = app.getCountryByRegion("Caribbean");
 
+        assertEquals(24, countries.size());
+
+        countries.forEach(Country -> {
+            assertNotNull(Country.country_code);
+            assertNotNull(Country.country_name);
+            assertNotNull(Country.continent);
+            assertNotNull(Country.Region);
+            assertNotEquals(-1, Country.Population);
+            // assertTrue(Country.Capital instanceof City);
+        });
+    }
+        @AfterAll
+        static void Disconnect ()
+        {
+            app.disconnect();
+        }
     }
