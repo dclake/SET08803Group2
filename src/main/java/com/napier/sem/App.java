@@ -360,7 +360,7 @@ public class App {
 
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
-            ArrayList<City> cities = City.getTopNWorldCities(5);
+            ArrayList<City> cities = City.getTopCitiesInContinent("Europe", 12);
             City.printCities(cities);
 
 
