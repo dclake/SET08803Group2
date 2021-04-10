@@ -56,6 +56,16 @@ public class City {
         Population = population;
     }
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "city_name='" + city_name + '\'' +
+                ", country_name='" + country_name + '\'' +
+                ", district='" + district + '\'' +
+                ", Population=" + Population +
+                '}';
+    }
+
     public  static ArrayList<City> getWorldCities()
     {
         try
