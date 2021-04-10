@@ -66,43 +66,6 @@ public class City {
                 '}';
     }
 
-    public  static ArrayList<City> getWorldCities()
-    {
-        try
-        {
-            // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population \n"
-                            + "FROM world.city , world.country\n"
-                            + "where country.Code = city.CountryCode\n"
-                            + "ORDER BY Population desc;";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next())
-            {
-                City city = new City();
-                city.city_name = rset.getString("city.Name");
-                city.country_name = rset.getString("country.name");
-                city.district = rset.getString("city.District");
-                city.Population = rset.getInt("city.Population");
-                cities.add(city);
-            }
-            return cities;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-    }
     public  static ArrayList<City> getContinentCities(String Continent)
     {
         try
@@ -416,28 +379,6 @@ public class City {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
             return null;
-        }
-    }
-    public static void printCities(ArrayList<City> cities)
-    {
-        // Check countries is not null
-        if (cities == null) {
-            System.out.println("No Cities");
-            return;
-        }
-        // Print header
-        System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%-35s %-40s %-35s %-15s", "City", "Country", "District", "Population"));
-        System.out.println("___________________________________________________________________________________________________________________________________________________");
-        // Loop over all countries in the list
-        for (City city : cities)
-        {
-            if (city == null)
-                continue;
-            String cities_string =
-                    String.format("%-35s %-40s %-35s %-15s",
-                            city.city_name, city.country_name, city.district, city.Population);
-            System.out.println(cities_string);
         }
     }
 }

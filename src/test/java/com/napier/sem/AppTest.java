@@ -26,7 +26,7 @@ public class AppTest
     @Test
     void printCitiesTestNull()
     {
-        City.printCities(null);
+        app.printCities(null);
     }
     @Test
     void printCountriesTestEmpty()
@@ -38,7 +38,7 @@ public class AppTest
     void printCitiesTestEmpty()
     {
         ArrayList<City> cities = new ArrayList<City>();
-        City.printCities(cities);
+        app.printCities(cities);
     }
     @Test
     void printCountriesTestContainsNull()
@@ -51,7 +51,7 @@ public class AppTest
     void printCitiesTestContainsNull() {
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
-        City.printCities(cities);
+        app.printCities(cities);
     }
     @Test
     void printCountries()
@@ -65,5 +65,16 @@ public class AppTest
         country.Capital = "La Habana";
         countries.add(country);
         app.printCountries(countries);
+    }
+    @Test
+    void printCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.setCity_name("Seoul");
+        city.setCountry_name("South Korea");
+        city.setDistrict("Seoul");
+        city.setPopulation(9981619);
+        app.printCities(cities);
     }
 }

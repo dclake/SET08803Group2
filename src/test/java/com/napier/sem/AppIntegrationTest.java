@@ -130,7 +130,7 @@ public class AppIntegrationTest {
     }
     @Test
     void getWorldCitiesIntegrationTest() {
-        ArrayList<City> cities = City.getWorldCities();
+        ArrayList<City> cities = app.getWorldCities();
 
         assertEquals(4079, cities.size());
 

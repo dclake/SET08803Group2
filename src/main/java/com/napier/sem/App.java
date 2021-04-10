@@ -422,7 +422,7 @@ public class App {
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
             ArrayList<City> cities = a.getWorldCities();
 
-            City.printCities(cities);
+            a.printCities(cities);
 
 
 
