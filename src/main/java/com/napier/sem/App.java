@@ -358,32 +358,6 @@ public class App {
             return null;
         }
     }
-    /**
-     * Prints a list of countries and population from largest to smallest.
-     * @param countries The list of countries to print.
-     */
-    public void printCountries(ArrayList<Country> countries)
-    {
-        // Check countries is not null
-        if (countries == null) {
-            System.out.println("No countries");
-            return;
-        }
-        // Print header
-        System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%4s %-52s %-15s %-26s %-15s %35s", "Code", "Country", "Continent", "Region", "Population", "Capital City"));
-        System.out.println("___________________________________________________________________________________________________________________________________________________");
-        // Loop over all countries in the list
-        for (Country country : countries)
-        {
-            if (country == null)
-                continue;
-            String countries_string =
-                    String.format("%4s %-52s %-15s %-26s %-15s %35s",
-                            country.country_code, country.country_name, country.continent, country.Region, country.Population, country.Capital);
-            System.out.println(countries_string);
-        }
-    }
     public  static ArrayList<City> getContinentCities(String Continent)
     {
         try
@@ -423,6 +397,33 @@ public class App {
             return null;
         }
     }
+    /**
+     * Prints a list of countries and population from largest to smallest.
+     * @param countries The list of countries to print.
+     */
+    public void printCountries(ArrayList<Country> countries)
+    {
+        // Check countries is not null
+        if (countries == null) {
+            System.out.println("No countries");
+            return;
+        }
+        // Print header
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        System.out.println(String.format("%4s %-52s %-15s %-26s %-15s %35s", "Code", "Country", "Continent", "Region", "Population", "Capital City"));
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (Country country : countries)
+        {
+            if (country == null)
+                continue;
+            String countries_string =
+                    String.format("%4s %-52s %-15s %-26s %-15s %35s",
+                            country.country_code, country.country_name, country.continent, country.Region, country.Population, country.Capital);
+            System.out.println(countries_string);
+        }
+    }
+
     public static void printCities(ArrayList<City> cities)
     {
         // Check countries is not null
@@ -440,8 +441,7 @@ public class App {
             if (city == null)
                 continue;
             String cities_string =
-                   // String.format("%-35s %-40s %-35s %-15s",
-                         city.toString();  // city.city_name, city.country_name, city.district, city.Population);
+                         city.toString();
             System.out.println(cities_string);
         }
     }
@@ -459,7 +459,7 @@ public class App {
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<City> cities = a.getWorldCities();
+            ArrayList<City> cities = a.getContinentCities("Africa");
 
             a.printCities(cities);
 
