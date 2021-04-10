@@ -384,6 +384,45 @@ public class App {
             System.out.println(countries_string);
         }
     }
+    public  static ArrayList<City> getContinentCities(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            //Connection con = null;
+            //Statement stmt = con.createStatement();
+            Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population \n" +
+                            "FROM world.city \n" +
+                            "Join world.country on city.CountryCode = country.Code\n" +
+                            "where country.Continent like '" + Continent + "'\n" +
+                            "ORDER BY Population desc";
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setCity_name(rset.getString("city.Name"));
+                city.setCountry_name(rset.getString("country.name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
     public static void printCities(ArrayList<City> cities)
     {
         // Check countries is not null
@@ -401,8 +440,8 @@ public class App {
             if (city == null)
                 continue;
             String cities_string =
-                    String.format("%-35s %-40s %-35s %-15s",
-                         city.toString());  // city.city_name, city.country_name, city.district, city.Population);
+                   // String.format("%-35s %-40s %-35s %-15s",
+                         city.toString();  // city.city_name, city.country_name, city.district, city.Population);
             System.out.println(cities_string);
         }
     }
