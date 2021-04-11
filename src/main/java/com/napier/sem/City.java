@@ -62,45 +62,7 @@ public class City {
     }
 
 
-    public  static ArrayList<City> getRegionCities(String Region)
-    {
-        try
-        {
-            // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population \n" +
-                            "FROM world.city \n" +
-                            "Join world.country on city.CountryCode = country.Code\n" +
-                            "where country.Region like '" + Region + "'\n" +
-                            "ORDER BY Population desc";
 
-            System.out.println(strSelect);
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next())
-            {
-                City city = new City();
-                city.city_name = rset.getString("city.Name");
-                city.country_name = rset.getString("country.name");
-                city.district = rset.getString("city.District");
-                city.Population = rset.getInt("city.Population");
-                cities.add(city);
-            }
-            return cities;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-    }
     public  static ArrayList<City> getCountriesCities(String Country)
     {
         try
