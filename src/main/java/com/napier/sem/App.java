@@ -561,6 +561,46 @@ public class App {
             return null;
         }
     }
+    public  static ArrayList<City> getTopNCitiesInRegion(String Region, int N)
+    {
+        try
+        {
+            // Create an SQL statement
+            //Connection con = null;
+            //Statement stmt = con.createStatement();
+            Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population \n" +
+                            "FROM world.city \n" +
+                            "Join world.country on city.CountryCode = country.Code\n" +
+                            "where country.Region like '" +Region +"' \n" +
+                            "ORDER BY Population desc\n" +
+                            "LIMIT 0, "+ N;
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setCity_name(rset.getString("city.Name"));
+                city.setCountry_name(rset.getString("country.name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -623,7 +663,7 @@ public class App {
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<City> cities = a.getTopNCitiesInContinent("Africa", 5);
+            ArrayList<City> cities = a.getTopNCitiesInRegion("Caribbean", 5);
 
             a.printCities(cities);
 
