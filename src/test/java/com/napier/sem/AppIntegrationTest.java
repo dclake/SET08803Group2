@@ -142,6 +142,19 @@ public class AppIntegrationTest {
         });
     }
     @Test
+    void getCountriesCitiesIntegrationTest() {
+        ArrayList<City> cities = app.getCountriesCities("India");
+
+        assertEquals(341, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
+    @Test
     void getContinentCitiesIntegrationTest() {
         ArrayList<City> cities = app.getContinentCities("Africa");
 
@@ -172,6 +185,19 @@ public class AppIntegrationTest {
         ArrayList<City> cities = app.getDistrictCities("New York");
 
         assertEquals(6, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
+    @Test
+    void getTopWorldCitiesIntegrationTest() {
+        ArrayList<City> cities = app.getTopNWorldCities(5);
+
+        assertEquals(5, cities.size());
 
         cities.forEach(City -> {
             assertNotNull(City.getCity_name());
