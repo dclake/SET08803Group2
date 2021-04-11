@@ -40,7 +40,7 @@ public class AppIntegrationTest {
 
     @Test
     void getCountryByContinetIntegrationTest() {
-        ArrayList<Country> countries = app.getCountryByContinet("Africa");
+        ArrayList<Country> countries = app.getCountryByContinent("Africa");
 
         assertEquals(57, countries.size());
 
@@ -70,7 +70,7 @@ public class AppIntegrationTest {
 
     @Test
     void getTopNCountryByContinentIntegrationTest() {
-        ArrayList<Country> countries = app.getTopNCountryByContinet("Africa", 4);
+        ArrayList<Country> countries = app.getTopNCountryByContinent("Africa", 4);
 
         assertEquals(4, countries.size());
 
@@ -133,6 +133,19 @@ public class AppIntegrationTest {
         ArrayList<City> cities = app.getWorldCities();
 
         assertEquals(4079, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
+    @Test
+    void getContinentCitiesIntegrationTest() {
+        ArrayList<City> cities = app.getContinentCities("Africa");
+
+        assertEquals(366, cities.size());
 
         cities.forEach(City -> {
             assertNotNull(City.getCity_name());

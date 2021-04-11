@@ -124,7 +124,7 @@ public class App {
         }
     }
     //@RequestMapping("countriesbycontinent")
-    public ArrayList<Country> getCountryByContinet( String continent)
+    public ArrayList<Country> getCountryByContinent( String continent)
     {
         try
         {
@@ -163,7 +163,7 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByContinet(  String continent, int N)
+    public ArrayList<Country> getTopNCountryByContinent(  String continent, int N)
     {
         try
         {
