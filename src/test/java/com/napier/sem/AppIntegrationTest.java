@@ -167,6 +167,19 @@ public class AppIntegrationTest {
             assertNotNull(City.getPopulation());
         });
     }
+    @Test
+    void getDistrictCitiesIntegrationTest() {
+        ArrayList<City> cities = app.getDistrictCities("New York");
+
+        assertEquals(6, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
