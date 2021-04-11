@@ -219,6 +219,19 @@ public class AppIntegrationTest {
             assertNotNull(City.getPopulation());
         });
     }
+    @Test
+    void getTopNCitiesInRegionIntegrationTest() {
+        ArrayList<City> cities = app.getTopNCitiesInRegion("Polynesia", 10);
+
+        assertEquals(10, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
