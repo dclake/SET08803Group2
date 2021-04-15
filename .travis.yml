@@ -44,9 +44,9 @@ jobs:
       deploy:
         provider: releases
           # This is the token we set before
-        api_key: $GITHUB_OAUTH_TOKEN
+        api_key: "$GITHUB_OAUTH_TOKEN"
         # Copy built JAR file to release.  JAR built in $TRAVIS_BUILD_DIR/target
-        file: $TRAVIS_BUILD_DIR/target/seMethods.jar
+        file: "$TRAVIS_BUILD_DIR/target/seMethods.jar"
         skip_cleanup: true
 
 stages:
