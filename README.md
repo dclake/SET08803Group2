@@ -39,7 +39,7 @@
 | 16    | The top N populated cities in a district where N is provided by the user. | Yes | image |
 | 17    | All the capital cities in the world organised by largest population to smallest. | Yes | image |
 | 18    | All the capital cities in a continent organised by largest population to smallest. | Yes | image |
-| 19    | All the capital cities in a region organised by largest to smallest.
+| 19    | All the capital cities in a region organised by largest to smallest. | Yes | |
 | 20    | The top N populated capital cities in the world where N is provided by the user.
 | 21    | The top N populated capital cities in a continent where N is provided by the user.
 | 22    | The top N populated capital cities in a region where N is provided by the user.
