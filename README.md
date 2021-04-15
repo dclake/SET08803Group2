@@ -6,7 +6,7 @@
 - Licence [![LICENSE](https://img.shields.io/github/license/dclake/SET08803Group2.svg?style=flat-square)](https://github.com/dclake/SET08803Group2/blob/main/LICENSE)
 - Release ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/dclake/SET08803Group2?include_prereleases)
 - Master Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/main/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
-- Develop Code Coverage [![codecov](https://codecov.io/gh/dclake/SET08803Group2/branch/develop/graph/badge.svg?token=HIRW4BV47J)](https://codecov.io/gh/dclake/SET08803Group2)
+
 ## Group Members
 - Dave C. Lake	    GMT-4
 - Ruairidh Reid     GMT+0 
@@ -36,9 +36,9 @@
 | 13    | The top N populated cities in a continent where N is provided by the user. | Yes | image |
 | 14    | The top N populated cities in a region where N is provided by the user. | Yes | image |
 | 15    | The top N populated cities in a country where N is provided by the user. | Yes | image |
-| 16    | The top N populated cities in a district where N is provided by the user.
-| 17    | All the capital cities in the world organised by largest population to smallest.
-| 18    | All the capital cities in a continent organised by largest population to smallest.
+| 16    | The top N populated cities in a district where N is provided by the user. | Yes | image |
+| 17    | All the capital cities in the world organised by largest population to smallest. | Yes | image |
+| 18    | All the capital cities in a continent organised by largest population to smallest. | Yes | image |
 | 19    | All the capital cities in a region organised by largest to smallest.
 | 20    | The top N populated capital cities in the world where N is provided by the user.
 | 21    | The top N populated capital cities in a continent where N is provided by the user.
@@ -53,3 +53,5 @@
 | 30    | The population of a district.
 | 31    | The population of a city.
 | 32    | The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic. |
+
+Test
