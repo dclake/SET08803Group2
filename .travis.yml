@@ -48,6 +48,8 @@ jobs:
         # Copy built JAR file to release.  JAR built in $TRAVIS_BUILD_DIR/target
         file: $TRAVIS_BUILD_DIR/target/seMethods.jar
         skip_cleanup: true
+        on:
+          all_branches: true
 
 stages:
   - unit tests
