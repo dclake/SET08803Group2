@@ -55,7 +55,7 @@ stages:
   - unit tests
   - integration tests
   - name: deploy
-    if: branch = main
+    if: branch = main AND tag IS blank AND type != pull_request
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
