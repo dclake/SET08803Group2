@@ -767,11 +767,11 @@ public class App {
             Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population \n" +
-                            "FROM world.city \n" +
-                            "Join world.country on city.ID = country.Capital\n" +
-                            "where country.Continent like '" +region + "'\n" +
-                            "ORDER BY Population desc";
+                    "SELECT country.Name,city.Name,city.District, city.Population " +
+                            "FROM country " +
+                            "INNER JOIN city ON country.Code = city.CountryCode AND country.Capital = city.ID " +
+                            "WHERE country.Region like '" + region +"' " +
+                            "ORDER BY city.Population DESC";
 
             System.out.println(strSelect);
             // Execute SQL statement
@@ -866,9 +866,7 @@ public class App {
 
 
 
-            // Test the size of the returned data - should be 239
-          //  System.out.println(countries.size());
-           //  a.printCountries(countries);
+                   //  a.printCountries(countries);
             // City.printCities(cities);
         }
         else
