@@ -258,6 +258,19 @@ public class AppIntegrationTest {
             assertNotNull(City.getPopulation());
         });
     }
+    @Test
+    void getRegionCapitalCitiesIntegrationTest() {
+        ArrayList<City> cities = app.getRegionCapitalCities("Caribbean");
+
+        assertEquals(14, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
