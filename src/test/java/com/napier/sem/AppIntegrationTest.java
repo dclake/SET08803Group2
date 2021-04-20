@@ -262,7 +262,7 @@ public class AppIntegrationTest {
     void getRegionCapitalCitiesIntegrationTest() {
         ArrayList<City> cities = app.getRegionCapitalCities("Caribbean");
 
-        assertEquals(14, cities.size());
+        assertEquals(24, cities.size());
 
         cities.forEach(City -> {
             assertNotNull(City.getCity_name());
