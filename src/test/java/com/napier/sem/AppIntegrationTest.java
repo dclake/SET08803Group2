@@ -272,8 +272,21 @@ public class AppIntegrationTest {
         });
     }
     @Test
-    void getTopNCapitalCitiesIntegrationTest() {
+    void TopNCapitalCitiesIntegrationTest() {
         ArrayList<City> cities = app.getTopNCapitalCities(6);
+
+        assertEquals(6, cities.size());
+
+        cities.forEach(City -> {
+            assertNotNull(City.getCity_name());
+            assertNotNull(City.getCountry_name());
+            assertNotNull(City.getDistrict());
+            assertNotNull(City.getPopulation());
+        });
+    }
+    @Test
+    void TopNCapitalCitiesRegionIntegrationTest() {
+        ArrayList<City> cities = app.getTopNCapitalCitiesRegion("Western Africa",6);
 
         assertEquals(6, cities.size());
 
