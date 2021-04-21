@@ -885,7 +885,7 @@ public class App {
             //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "Select qry.Continent, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers *100/qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) /qry.TotalPopulation)*100) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
+                    "Select qry.Continent, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers/qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) /qry.TotalPopulation)*100) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
                             "(SELECT cnt.Continent  , sum(cnt.Population) as TotalPopulation,\n" +
                             "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Continent= cnt.Continent) as CityDwellers\n" +
                             "FROM country as cnt GROUP BY cnt.Continent) as qry";
@@ -901,9 +901,9 @@ public class App {
                 entry.setContinent(rset.getString("Continent"));
                 entry.setTotalPopulation(rset.getLong("TotalPopulation"));
                 entry.setCityDwellers(rset.getInt("CityDwellers"));
-                entry.setPercentageCityDwellers(rset.getInt("PercentageCityDwellers"));
+                entry.setPercentageCityDwellers(rset.getFloat("PercentageCityDwellers"));
                 entry.setNonCityDwellers(rset.getLong("NonCityDwellers"));
-                entry.setPercentageNonCityDwellers(rset.getInt("PercentageNonCityDwellers"));
+                entry.setPercentageNonCityDwellers(rset.getFloat("PercentageNonCityDwellers"));
                 entries.add(entry);
             }
             return entries;
@@ -972,7 +972,7 @@ public class App {
         }
         // Print header
         System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%-18s %-20s %-15s %-25s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageCityDwellers"));
+        System.out.println(String.format("%-18s %-20s %-15s %-25s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageNonCityDwellers"));
         System.out.println("___________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (CityDwellers entry : entries)

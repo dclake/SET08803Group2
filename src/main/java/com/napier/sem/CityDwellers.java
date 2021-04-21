@@ -4,9 +4,9 @@ public class CityDwellers {
     private String Continent;
     private long TotalPopulation;
     private int CityDwellers;
-    private int PercentageCityDwellers;
+    private float PercentageCityDwellers;
     private long NonCityDwellers;
-    private int PercentageNonCityDwellers;
+    private float PercentageNonCityDwellers;
 
     public String getContinent() {
         return Continent;
@@ -31,11 +31,11 @@ public class CityDwellers {
         CityDwellers = cityDwellers;
     }
 
-    public int getPercentageCityDwellers() {
+    public float getPercentageCityDwellers() {
         return PercentageCityDwellers;
     }
 
-    public void setPercentageCityDwellers(int percentageCityDwellers) {
+    public void setPercentageCityDwellers(float percentageCityDwellers) {
         PercentageCityDwellers = percentageCityDwellers;
     }
 
@@ -47,17 +47,17 @@ public class CityDwellers {
         NonCityDwellers = nonCityDwellers;
     }
 
-    public int getPercentageNonCityDwellers() {
+    public float getPercentageNonCityDwellers() {
         return PercentageNonCityDwellers;
     }
 
-    public void setPercentageNonCityDwellers(int percentageNonCityDwellers) {
+    public void setPercentageNonCityDwellers(float percentageNonCityDwellers) {
         PercentageNonCityDwellers = percentageNonCityDwellers;
     }
     @Override
     public String toString() {
         return String.format("%-18s %-20s %-15s %-25s %-15s %-15s" ,
-                Continent, TotalPopulation, CityDwellers, PercentageCityDwellers, NonCityDwellers, PercentageCityDwellers );
+                Continent, TotalPopulation, CityDwellers, PercentageCityDwellers, NonCityDwellers, PercentageNonCityDwellers );
     }
 }
 

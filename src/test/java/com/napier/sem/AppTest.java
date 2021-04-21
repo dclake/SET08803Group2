@@ -29,6 +29,11 @@ public class AppTest
         app.printCities(null);
     }
     @Test
+    void printCityDwellersTestNull()
+    {
+        app.printCityDwellers(null);
+    }
+    @Test
     void printCountriesTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
@@ -39,6 +44,12 @@ public class AppTest
     {
         ArrayList<City> cities = new ArrayList<City>();
         app.printCities(cities);
+    }
+    @Test
+    void printCityDwellersTestEmpty()
+    {
+        ArrayList<CityDwellers> entires = new ArrayList<CityDwellers>();
+        app.printCityDwellers(entires);
     }
     @Test
     void printCountriesTestContainsNull()
@@ -52,6 +63,12 @@ public class AppTest
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
         app.printCities(cities);
+    }
+    @Test
+    void printCityDwellersTestContainsNull() {
+        ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
+        entries.add(null);
+        app.printCityDwellers(entries);
     }
     @Test
     void printCountries()
@@ -76,5 +93,18 @@ public class AppTest
         city.setDistrict("Seoul");
         city.setPopulation(9981619);
         app.printCities(cities);
+    }
+    @Test
+    void printCityDwellers()
+    {
+        ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
+        CityDwellers entry = new CityDwellers();
+        entry.setContinent("North America");
+        entry.setTotalPopulation(482993000);
+        entry.setCityDwellers(168250381);
+        entry.setPercentageCityDwellers((float) 34.835);
+        entry.setNonCityDwellers(314742619);
+        entry.setPercentageNonCityDwellers((int) 34.835);
+        app.printCityDwellers(entries);
     }
 }
