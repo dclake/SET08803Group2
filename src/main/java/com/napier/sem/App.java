@@ -963,6 +963,27 @@ public class App {
             System.out.println(cities_string);
         }
     }
+    public static void printCityDwellers(ArrayList<CityDwellers> entries)
+    {
+        // Check entries is not null
+        if (entries == null) {
+            System.out.println("No City Dwellers");
+            return;
+        }
+        // Print header
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        System.out.println(String.format("%-18s %-15s %-15s %-15s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageCityDwellers"));
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (CityDwellers entry : entries)
+        {
+            if (entry == null)
+                continue;
+            String citydwellers_string =
+                    entry.toString();
+            System.out.println(citydwellers_string);
+        }
+    }
     public static void main(String[] args) throws InterruptedException, IOException  {
         // Connect to database
         if (args.length < 1)
@@ -979,7 +1000,7 @@ public class App {
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
             ArrayList<CityDwellers> entries = a.getCityDwellersContinent();
 
-            //a.printCities(cities);
+            a.printCityDwellers(entries);
 
 
 
