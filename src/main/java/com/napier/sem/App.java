@@ -1,11 +1,10 @@
 package com.napier.sem;
 
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,8 +12,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-//@SpringBootApplication
-//@RestController
+@SpringBootApplication
+@RestController
 public class App {
     /**
      * Connection to MySQL database.
@@ -85,7 +84,7 @@ public class App {
      * Gets all Countries and Polulations from largest to smallest.
      * @return A list of all countries and populations, or null if there is an error.
      */
-    //@RequestMapping("countries")
+    @RequestMapping("countries")
     public ArrayList<Country> getCountryByPopulation()
     {
         try
@@ -1136,31 +1135,27 @@ public class App {
         {
             //connect();
             // Create new Application
-            App a = new App();
+           // App a = new App();
 
             // Connect to database
-            a.connect("localhost:33060");
+            //a.connect("localhost:33060");
+            connect("localhost:33060");
 
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<Language> languages = a.getLanguages();
+           // ArrayList<Language> languages = a.getLanguages();
 
-            a.printLanguages(languages);
-
-
+           // a.printLanguages(languages);
 
 
-
-                   //  a.printCountries(countries);
-            // City.printCities(cities);
         }
         else
         {
             connect(args[0]);
         }
         //String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
-        // SpringApplication.run(App.class, args);
+        SpringApplication.run(App.class, args);
 
 
 
