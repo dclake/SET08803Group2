@@ -68,11 +68,11 @@ jobs:
       # Push the database image.
       - docker push gcr.io/${PROJECT_ID}/db
       # Create a container cluster.  We only need one node.
-      - gcloud container clusters create hr-cluster --num-nodes=1
+      - gcloud container clusters create world-cluster --num-nodes=1
       # Tell kubernetes to run the built database image, opening port 3306
-      - kubectl run hr --image=gcr.io/${PROJECT_ID}/db --port 3306
+      - kubectl run world --image=gcr.io/${PROJECT_ID}/db --port 3306
       # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
-      - kubectl expose deployment hr --port=3306 --target-port=3306 --type=LoadBalancer
+      - kubectl expose deployment world --port=3306 --target-port=3306 --type=LoadBalancer
 stages:
 - unit tests
 - integration tests
