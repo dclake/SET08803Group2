@@ -1,61 +1,50 @@
 language: java
-
 sudo: false
-
 addons:
   hosts:
-    - db
-
+  - db
 services:
-  - docker
-
+- docker
 install:
-  - docker build -t database db/.
-  - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
+- docker build -t database db/.
+- docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
-  - mvn clean
-
+- mvn clean
 jobs:
   include:
-    - stage: unit tests
-      install: skip
-      jdk: oraclejdk11
-      script: mvn test -Dtest=com.napier.sem.AppTest
-    - stage: integration tests
-      jdk: oraclejdk11
-      script: mvn test -Dtest=com.napier.sem.AppIntegrationTest
-    - stage: GitHub Release
-      install: skip
-      jdk: oraclejdk11
-      script:
-        - echo "Deploying to GitHub Releases"
-          # Package (build) the JAR
-        - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
-      before_deploy:
-          # Set up git user name and tag this commit
-        - git config --local user.name "Dave Lake"
-        - git config --local user.email "dclake@gmail.com"
-          # Create temporary tag from date and Git log.
-        - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
-          # Set tag
-        - git tag $TRAVIS_TAG
-      deploy:
-        provider: releases
-          # This is the token we set before
-        api_key: $GITHUB_OAUTH_TOKEN
-        # Copy built JAR file to release.  JAR built in $TRAVIS_BUILD_DIR/target
-        file: $TRAVIS_BUILD_DIR/target/seMethods.jar
-        skip_cleanup: true
-        on:
-         branch: main
-
+  - stage: unit tests
+    install: skip
+    jdk: oraclejdk11
+    script: mvn test -Dtest=com.napier.sem.AppTest
+  - stage: integration tests
+    jdk: oraclejdk11
+    script: mvn test -Dtest=com.napier.sem.AppIntegrationTest
+  - stage: GitHub Release
+    install: skip
+    jdk: oraclejdk11
+    script:
+    - echo "Deploying to GitHub Releases"
+    - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
+    before_deploy:
+    - git config --local user.name "Dave Lake"
+    - git config --local user.email "dclake@gmail.com"
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
+    - git tag $TRAVIS_TAG
+    deploy:
+      provider: releases
+      api_key: "$GITHUB_OAUTH_TOKEN"
+      file: "$TRAVIS_BUILD_DIR/target/seMethods.jar"
+      skip_cleanup: true
+      on:
+        branch: main
 stages:
-  - unit tests
-  - integration tests
-  - name: deploy
-    if: branch = main AND tag IS blank AND type != pull_request
-
+- unit tests
+- integration tests
+- name: deploy
+  if: branch = main AND tag IS blank AND type != pull_request
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+before_install:
+- openssl aes-256-cbc -K $encrypted_2fd045226a67_key -iv $encrypted_2fd045226a67_iv
+  -in client-secret.json.enc -out client-secret.json -d
