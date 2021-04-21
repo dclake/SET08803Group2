@@ -54,4 +54,3 @@
 | 31    | The population of a city.
 | 32    | The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic. |
 
-Test
