@@ -80,9 +80,11 @@ public class App {
         }
     }
 
+
     /**
-     * Gets all Countries and Polulations from largest to smallest.
-     * @return A list of all countries and populations, or null if there is an error.
+     * Gets country by population.
+     *
+     * @return the country by population
      */
     @RequestMapping("countries")
     public ArrayList<Country> getCountryByPopulation()
@@ -122,8 +124,15 @@ public class App {
             return null;
         }
     }
-    //@RequestMapping("countriesbycontinent")
-    public ArrayList<Country> getCountryByContinent( String continent)
+
+    /**
+     * Gets country by continent.
+     *
+     * @param continent the continent
+     * @return the country by continent
+     */
+    @RequestMapping("countriesbycontinent")
+    public ArrayList<Country> getCountryByContinent(@RequestParam String continent)
     {
         try
         {
