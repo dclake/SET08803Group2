@@ -972,7 +972,7 @@ public class App {
         }
         // Print header
         System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%-18s %-15s %-15s %-15s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageCityDwellers"));
+        System.out.println(String.format("%-18s %-20s %-15s %-25s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageCityDwellers"));
         System.out.println("___________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (CityDwellers entry : entries)
