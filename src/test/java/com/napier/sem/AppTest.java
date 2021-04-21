@@ -33,10 +33,10 @@ public class AppTest
     {
         app.printCityDwellers(null);
     }
-    Test
+    @Test
     void printLanguageTestNull()
     {
-        app.printLanguage(null);
+        app.printLanguages(null);
     }
     @Test
     void printCountriesTestEmpty()
@@ -80,6 +80,12 @@ public class AppTest
         ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
         entries.add(null);
         app.printCityDwellers(entries);
+    }
+    @Test
+    void printLanguagesContainsNull() {
+        ArrayList<Language> languages = new ArrayList<Language>();
+        languages.add(null);
+        app.printLanguages(languages);
     }
     @Test
     void printCountries()

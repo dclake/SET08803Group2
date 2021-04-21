@@ -995,6 +995,51 @@ public class App {
             return null;
         }
     }
+    public  static ArrayList<Language> getLanguages()
+    {
+        try
+        {
+            // Create an SQL statement
+            // Connection con = null;
+            Statement stmt = con.createStatement();
+            //Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select q.Language,q.TotalSpeakers,(q.TotalSpeakers/ (Select SUM(country.Population) from country))*100 as WorldPercent from\n" +
+                            "(SELECT\n" +
+                            "countrylanguage.Language,\n" +
+                            "SUM(country.Population) as TotalSpeakers\n" +
+                            "FROM\n" +
+                            "countrylanguage\n" +
+                            "INNER JOIN\n" +
+                            "country\n" +
+                            "ON\n" +
+                            "countrylanguage.CountryCode = country.`Code`\n" +
+                            " where countrylanguage.Language in (\"Chinese\",\"English\",\"Hindi\",\"Spanish\",\"Arabic\") GROUP BY countrylanguage.Language) as q\n" +
+                            " order by WorldPercent ";
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Language> languages = new ArrayList<Language>();
+            while (rset.next())
+            {
+                Language language = new Language();
+                language.setLanguage(rset.getString("Language"));
+                language.setTotalSpeakers(rset.getLong("TotalSpeakers"));
+                language.setWorldPercentage(rset.getFloat("WorldPercentage"));
+                languages.add(language);
+            }
+            return languages;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Language details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -1062,6 +1107,27 @@ public class App {
             String citydwellers_string =
                     entry.toString();
             System.out.println(citydwellers_string);
+        }
+    }
+    public static void printLanguages(ArrayList<Language> languages)
+    {
+        // Check entries is not null
+        if (languages == null) {
+            System.out.println("No Languages");
+            return;
+        }
+        // Print header
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        System.out.println(String.format("%-20s %-20s %-15s", "Languages", "Total Speakers", "Percentage World Speakers"));
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (Language language : languages)
+        {
+            if (language == null)
+                continue;
+            String Language_string =
+                    language.toString();
+            System.out.println(Language_string);
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException  {
