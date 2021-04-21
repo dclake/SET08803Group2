@@ -1052,7 +1052,7 @@ public class App {
         }
         // Print header
         System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%-25s %-20s %-15s %-25s %-15s %-15s", "Name", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageNonCityDwellers"));
+        System.out.println(String.format("%-45s %-20s %-15s %-25s %-15s %-15s", "Name", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageNonCityDwellers"));
         System.out.println("___________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (CityDwellers entry : entries)
@@ -1078,7 +1078,7 @@ public class App {
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<CityDwellers> entries = a.getCityDwellersRegion();
+            ArrayList<CityDwellers> entries = a.getCityDwellersCountry();
 
             a.printCityDwellers(entries);
 

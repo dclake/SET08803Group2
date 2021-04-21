@@ -58,7 +58,7 @@ public class CityDwellers {
     }
     @Override
     public String toString() {
-        return String.format("%-25s %-20s %-15s %-25s %-15s %-15s" ,
+        return String.format("%-45s %-20s %-15s %-25s %-15s %-15s" ,
                 Name, TotalPopulation, CityDwellers, PercentageCityDwellers, NonCityDwellers, PercentageNonCityDwellers );
     }
 }
