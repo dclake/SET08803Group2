@@ -898,7 +898,47 @@ public class App {
             while (rset.next())
             {
                 CityDwellers entry = new CityDwellers();
-                entry.setContinent(rset.getString("Continent"));
+                entry.setName(rset.getString("Continent"));
+                entry.setTotalPopulation(rset.getLong("TotalPopulation"));
+                entry.setCityDwellers(rset.getInt("CityDwellers"));
+                entry.setPercentageCityDwellers(rset.getFloat("PercentageCityDwellers"));
+                entry.setNonCityDwellers(rset.getLong("NonCityDwellers"));
+                entry.setPercentageNonCityDwellers(rset.getFloat("PercentageNonCityDwellers"));
+                entries.add(entry);
+            }
+            return entries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City Dwellers details");
+            return null;
+        }
+    }
+    public  static ArrayList<CityDwellers> getCityDwellersRegion()
+    {
+        try
+        {
+            // Create an SQL statement
+            // Connection con = null;
+            Statement stmt = con.createStatement();
+            //Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select qry.Region, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers /qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) *100)/qry.TotalPopulation) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
+                            "(SELECT cnt.Region, sum(cnt.Population) as TotalPopulation,\n" +
+                            "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Region= cnt.Region) as CityDwellers\n" +
+                            "FROM country as cnt GROUP BY cnt.Region) as qry";
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
+            while (rset.next())
+            {
+                CityDwellers entry = new CityDwellers();
+                entry.setName(rset.getString("Region"));
                 entry.setTotalPopulation(rset.getLong("TotalPopulation"));
                 entry.setCityDwellers(rset.getInt("CityDwellers"));
                 entry.setPercentageCityDwellers(rset.getFloat("PercentageCityDwellers"));
@@ -972,7 +1012,7 @@ public class App {
         }
         // Print header
         System.out.println("___________________________________________________________________________________________________________________________________________________");
-        System.out.println(String.format("%-18s %-20s %-15s %-25s %-15s %-15s", "Continent", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageNonCityDwellers"));
+        System.out.println(String.format("%-18s %-20s %-15s %-25s %-15s %-15s", "Name", "Total Population", "City Dwellers", "PercentageCityDwellers", "NonCityDwellers", "PercentageNonCityDwellers"));
         System.out.println("___________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (CityDwellers entry : entries)

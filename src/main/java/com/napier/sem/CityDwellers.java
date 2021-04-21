@@ -1,18 +1,20 @@
 package com.napier.sem;
 
 public class CityDwellers {
-    private String Continent;
+    private String Name;
     private long TotalPopulation;
     private int CityDwellers;
     private float PercentageCityDwellers;
     private long NonCityDwellers;
     private float PercentageNonCityDwellers;
 
-    public String getContinent() {
-        return Continent;
+
+
+    public String getName() {
+        return Name;
     }
-    public void setContinent(String Continent) {
-        this.Continent = Continent;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public long getTotalPopulation() {
@@ -57,7 +59,7 @@ public class CityDwellers {
     @Override
     public String toString() {
         return String.format("%-18s %-20s %-15s %-25s %-15s %-15s" ,
-                Continent, TotalPopulation, CityDwellers, PercentageCityDwellers, NonCityDwellers, PercentageNonCityDwellers );
+                Name, TotalPopulation, CityDwellers, PercentageCityDwellers, NonCityDwellers, PercentageNonCityDwellers );
     }
 }
 

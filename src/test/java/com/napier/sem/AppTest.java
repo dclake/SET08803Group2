@@ -99,7 +99,7 @@ public class AppTest
     {
         ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
         CityDwellers entry = new CityDwellers();
-        entry.setContinent("North America");
+        entry.setName("North America");
         entry.setTotalPopulation(482993000);
         entry.setCityDwellers(168250381);
         entry.setPercentageCityDwellers((float) 34.835);

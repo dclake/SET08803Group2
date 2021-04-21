@@ -304,7 +304,7 @@ public class AppIntegrationTest {
         assertEquals(7, entries.size());
 
         entries.forEach(Entry -> {
-            assertNotNull(Entry.getContinent());
+            assertNotNull(Entry.getName());
             assertNotNull(Entry.getTotalPopulation());
             assertNotNull(Entry.getCityDwellers());
             assertNotNull(Entry.getPercentageCityDwellers());
