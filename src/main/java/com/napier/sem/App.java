@@ -951,7 +951,47 @@ public class App {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Capital City details");
+            System.out.println("Failed to get City Dwellers details");
+            return null;
+        }
+    }
+    public  static ArrayList<CityDwellers> getCityDwellersCountry()
+    {
+        try
+        {
+            // Create an SQL statement
+            // Connection con = null;
+            Statement stmt = con.createStatement();
+            //Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select qry.Name,  qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers /qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) *100)/qry.TotalPopulation) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
+                            "(SELECT cnt.Name, sum(cnt.Population) as TotalPopulation,\n" +
+                            "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Name= cnt.Name) as CityDwellers\n" +
+                            "FROM country as cnt GROUP BY cnt.Name) as qry";
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
+            while (rset.next())
+            {
+                CityDwellers entry = new CityDwellers();
+                entry.setName(rset.getString("Name"));
+                entry.setTotalPopulation(rset.getLong("TotalPopulation"));
+                entry.setCityDwellers(rset.getInt("CityDwellers"));
+                entry.setPercentageCityDwellers(rset.getFloat("PercentageCityDwellers"));
+                entry.setNonCityDwellers(rset.getLong("NonCityDwellers"));
+                entry.setPercentageNonCityDwellers(rset.getFloat("PercentageNonCityDwellers"));
+                entries.add(entry);
+            }
+            return entries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City Dwellers details");
             return null;
         }
     }
