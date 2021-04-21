@@ -1016,7 +1016,7 @@ public class App {
                             "ON\n" +
                             "countrylanguage.CountryCode = country.`Code`\n" +
                             " where countrylanguage.Language in (\"Chinese\",\"English\",\"Hindi\",\"Spanish\",\"Arabic\") GROUP BY countrylanguage.Language) as q\n" +
-                            " order by WorldPercent ";
+                            " order by WorldPercent desc";
 
             System.out.println(strSelect);
             // Execute SQL statement

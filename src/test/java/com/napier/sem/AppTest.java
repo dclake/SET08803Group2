@@ -124,4 +124,14 @@ public class AppTest
         entry.setPercentageNonCityDwellers((float) 34.835);
         app.printCityDwellers(entries);
     }
+    @Test
+    void printLanguages()
+    {
+        ArrayList<Language> languages = new ArrayList<Language>();
+        Language language = new Language();
+        language.setLanguage("Arabic");
+        language.setTotalSpeakers(552045100);
+        language.setWorldPercentage((float)9.0816);
+        app.printLanguages(languages);
+    }
 }
