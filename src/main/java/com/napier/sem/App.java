@@ -136,7 +136,6 @@ public class App {
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -171,11 +170,19 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByContinent(  String continent, int N)
+
+    /**
+     * Gets top n country by continent.
+     *
+     * @param continent the continent
+     * @param N         the n
+     * @return the top n country by continent
+     */
+    @RequestMapping("topncountriesbycontinent")
+    public ArrayList<Country> getTopNCountryByContinent(@RequestParam  String continent, int N)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -211,12 +218,18 @@ public class App {
             return null;
         }
     }
-   // @RequestMapping("countriesbyregion")
-    public ArrayList<Country> getCountryByRegion(  String region)
+
+    /**
+     * Gets country by region.
+     *
+     * @param region the region
+     * @return the country by region
+     */
+    @RequestMapping("countriesbyregion")
+    public ArrayList<Country> getCountryByRegion(@RequestParam String region)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -251,11 +264,19 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByRegion(  String region, int N)
+
+    /**
+     * Gets top n country by region.
+     *
+     * @param region the region
+     * @param N      the n
+     * @return the top n country by region
+     */
+    @RequestMapping("gettopncountrybyregion")
+    public ArrayList<Country> getTopNCountryByRegion(@RequestParam  String region, int N)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
