@@ -342,6 +342,18 @@ public class AppIntegrationTest {
             assertNotNull(Entry.getPercentageNonCityDwellers());
         });
     }
+    @Test
+    void Languages() {
+        ArrayList<Language> languages = app.getLanguages();
+
+        assertEquals(5, languages.size());
+
+        languages.forEach(Language -> {
+            assertNotNull(Language.getLanguage());
+            assertNotNull(Language.getTotalSpeakers());
+            assertNotNull(Language.getWorldPercentage());
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
