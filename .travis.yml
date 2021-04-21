@@ -72,7 +72,7 @@ jobs:
       # Tell kubernetes to run the built database image, opening port 3306
       #- kubectl run world --image=gcr.io/${PROJECT_ID}/db --port 3306
       #- kubect world --image=gcr.io/${PROJECT_ID}/db --port 3306
-      - kubectl create deployment world --image=gcr.io/${PROJECT_ID}/db:1 --port 3306
+      - kubectl create deployment world --image=gcr.io/${PROJECT_ID}/db:1
       # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
       - kubectl expose deployment world --port=3306 --target-port=3306 --type=LoadBalancer
 stages:
