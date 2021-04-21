@@ -1028,7 +1028,7 @@ public class App {
                 Language language = new Language();
                 language.setLanguage(rset.getString("Language"));
                 language.setTotalSpeakers(rset.getLong("TotalSpeakers"));
-                language.setWorldPercentage(rset.getFloat("WorldPercentage"));
+                language.setWorldPercentage(rset.getFloat("WorldPercent"));
                 languages.add(language);
             }
             return languages;
@@ -1144,9 +1144,9 @@ public class App {
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<CityDwellers> entries = a.getCityDwellersCountry();
+            ArrayList<Language> languages = a.getLanguages();
 
-            a.printCityDwellers(entries);
+            a.printLanguages(languages);
 
 
 
