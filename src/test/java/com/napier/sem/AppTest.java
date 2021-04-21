@@ -104,7 +104,7 @@ public class AppTest
         entry.setCityDwellers(168250381);
         entry.setPercentageCityDwellers((float) 34.835);
         entry.setNonCityDwellers(314742619);
-        entry.setPercentageNonCityDwellers((int) 34.835);
+        entry.setPercentageNonCityDwellers((float) 34.835);
         app.printCityDwellers(entries);
     }
 }
