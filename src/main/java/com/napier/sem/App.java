@@ -841,8 +841,8 @@ public class App {
         {
             // Create an SQL statement
             //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
+            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Name,city.Name,city.District, city.Population " +
@@ -881,8 +881,8 @@ public class App {
         {
             // Create an SQL statement
            // Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
+            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "Select qry.Continent, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers *100/qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) /qry.TotalPopulation)*100) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
