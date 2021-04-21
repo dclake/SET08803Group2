@@ -875,6 +875,46 @@ public class App {
             return null;
         }
     }
+    public  static ArrayList<CityDwellers> getCityDwellersContinent()
+    {
+        try
+        {
+            // Create an SQL statement
+           // Connection con = null;
+            //Statement stmt = con.createStatement();
+            Statement stmt = App.getCon().createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select qry.Continent, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers *100/qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) /qry.TotalPopulation)*100) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
+                            "(SELECT cnt.Continent  , sum(cnt.Population) as TotalPopulation,\n" +
+                            "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Continent= cnt.Continent) as CityDwellers\n" +
+                            "FROM country as cnt GROUP BY cnt.Continent) as qry";
+
+            System.out.println(strSelect);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
+            while (rset.next())
+            {
+                CityDwellers entry = new CityDwellers();
+                entry.setContinent(rset.getString("Continent"));
+                entry.setTotalPopulation(rset.getLong("TotalPopulation"));
+                entry.setCityDwellers(rset.getInt("CityDwellers"));
+                entry.setPercentageCityDwellers(rset.getInt("PercentageCityDwellers"));
+                entry.setNonCityDwellers(rset.getLong("NonCityDwellers"));
+                entry.setPercentageNonCityDwellers(rset.getInt("PercentageNonCityDwellers"));
+                entries.add(entry);
+            }
+            return entries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital City details");
+            return null;
+        }
+    }
     /**
      * Prints a list of countries and population from largest to smallest.
      * @param countries The list of countries to print.
@@ -937,9 +977,9 @@ public class App {
             // Extract country population information
            // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
            // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<City> cities = a.getTopNCapitalCitiesRegion("Western Africa", 6);
+            ArrayList<CityDwellers> entries = a.getCityDwellersContinent();
 
-            a.printCities(cities);
+            //a.printCities(cities);
 
 
 

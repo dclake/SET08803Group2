@@ -297,6 +297,22 @@ public class AppIntegrationTest {
             assertNotNull(City.getPopulation());
         });
     }
+    @Test
+    void CityDwellersContinent() {
+        ArrayList<CityDwellers> entries = app.getCityDwellersContinent();
+
+        assertEquals(7, entries.size());
+
+        entries.forEach(Entry -> {
+            assertNotNull(Entry.getContinent());
+            assertNotNull(Entry.getTotalPopulation());
+            assertNotNull(Entry.getCityDwellers());
+            assertNotNull(Entry.getPercentageCityDwellers());
+            assertNotNull(Entry.getNonCityDwellers());
+            assertNotNull(Entry.getPercentageNonCityDwellers());
+            //assertNotNull(City.getPopulation());
+        });
+    }
         @AfterAll
         static void Disconnect ()
         {
