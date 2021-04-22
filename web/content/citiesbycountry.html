@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cities By Population and Continent</title>
+    <title>Cities By Population and Country</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,19 +25,10 @@
     </style>
 </head>
 <body>
-<h1>Cities by Population & Continent</h1>
-<form action="/citiesbycontinent.html">
-    <label for="continent">Choose a Continent:</label>
-    <select id="continent" name="continent">
-        <option value="Africa">Africa</option>
-        <option value="Antarctica" selected="selected">Antarctica</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="North America">North America</option>
-        <option value="Oceania">Oceania</option>
-        <option value="South America">South America</option>
-    </select>
-    </br>
+<h1>Cities by Population & Country</h1>
+<form action="/citiesbycountry.html">
+    <label for="country">Choose a Country:</label>
+    <input type="text" id=country name=country value="Haiti">
     <input type="submit" value="Submit">
 </form>
 </br>
@@ -48,9 +39,9 @@
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var continent = urlParams.get('continent');
+    var country = urlParams.get('country');
 
-    var URL = "http://" + window.location.hostname + "/app/continentcities?continent=" + continent;
+    var URL = "http://" + window.location.hostname + "/app/countrycities?Country=" + country;
 
     //show url
 

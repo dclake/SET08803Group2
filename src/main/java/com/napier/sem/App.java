@@ -556,7 +556,6 @@ public class App {
                             "where country.Name like '" + Country + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
