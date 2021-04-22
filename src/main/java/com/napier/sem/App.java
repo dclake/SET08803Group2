@@ -319,7 +319,7 @@ public class App {
      * @param N the n
      * @return the top n country by population
      */
-    @RequestMapping("tepncountriesbypopulation")
+    @RequestMapping("topncountriesbypopulation")
     public ArrayList<Country> getTopNCountryByPopulation(@RequestParam int N)
     {
         try
