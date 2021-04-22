@@ -272,7 +272,7 @@ public class App {
      * @param N      the n
      * @return the top n country by region
      */
-    @RequestMapping("gettopncountrybyregion")
+    @RequestMapping("topncountrybyregion")
     public ArrayList<Country> getTopNCountryByRegion(@RequestParam  String region, int N)
     {
         try

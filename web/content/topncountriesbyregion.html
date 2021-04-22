@@ -70,7 +70,7 @@
     var n = urlParams.get('n');
     var region = urlParams.get('region');
 
-    var URL = "http://" + window.location.hostname + "/app/topncountriesbyregion?N=" + n +"&continent="+region;
+    var URL = "http://" + window.location.hostname + "/app/topncountrybyregion?N=" + n +"&region="+region;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
