@@ -895,8 +895,8 @@ public class App {
      * @param region the region
      * @return the region capital cities
      */
-    @RequestMapping("regioncapitalcites")
-    public  static ArrayList<City> getRegionCapitalCities(@RequestParam String region)
+    @RequestMapping("regioncapitalcities")
+    public  static ArrayList<CapitalCity> getRegionCapitalCities(@RequestParam String region)
     {
         try
         {
@@ -913,17 +913,16 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract capital city information
-            ArrayList<City> cities = new ArrayList<City>();
+            ArrayList<CapitalCity> capitalCities = new ArrayList<CapitalCity>();
             while (rset.next())
             {
-                City city = new City();
-                city.setCity_name(rset.getString("city.Name"));
-                city.setCountry_name(rset.getString("country.name"));
-                city.setDistrict(rset.getString("city.District"));
-                city.setPopulation(rset.getInt("city.Population"));
-                cities.add(city);
+                CapitalCity capitalCity = new CapitalCity();
+                capitalCity.setName(rset.getString("city.Name"));
+                capitalCity.setCountry(rset.getString("country.name"));
+                capitalCity.setPopulation(rset.getLong("city.Population"));
+                capitalCities.add(capitalCity);
             }
-            return cities;
+            return capitalCities;
         }
         catch (Exception e)
         {
