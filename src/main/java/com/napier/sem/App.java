@@ -759,6 +759,43 @@ public class App {
             return null;
         }
     }
+    @RequestMapping("topncitiesindistrict")
+    public  static ArrayList<City> getTopNCitiesInDistrict(@RequestParam String District, int N)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population \n" +
+                            "FROM world.city \n" +
+                            "Join world.country on city.CountryCode = country.Code\n" +
+                            "where country.Name like '" + District + "'\n" +
+                            "ORDER BY Population desc\n" +
+                            "LIMIT 0, "+ N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setCity_name(rset.getString("city.Name"));
+                city.setCountry_name(rset.getString("country.name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
 
     /**
      * Gets world capital cities.
