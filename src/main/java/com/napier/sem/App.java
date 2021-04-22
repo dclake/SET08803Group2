@@ -722,7 +722,7 @@ public class App {
      * @param N       the n
      * @return the top n cities in country
      */
-    @RequestMapping("topncitiesincounty")
+    @RequestMapping("topncitiesincountry")
     public  static ArrayList<City> getTopNCitiesInCountry(@RequestParam String Country, int N)
     {
         try
