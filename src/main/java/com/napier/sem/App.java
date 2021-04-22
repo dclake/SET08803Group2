@@ -976,6 +976,49 @@ public class App {
     }
 
     /**
+     * Gets top n continent capital cities.
+     *
+     * @param N the n
+     * @return the top n continent capital cities
+     */
+    @RequestMapping("topncontinentcapitalcities")
+    public  static ArrayList<CapitalCity> getTopNContinentCapitalCities(@RequestParam String Continent, int N)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Name,city.Name,city.District, city.Population " +
+                            "FROM country " +
+                            "INNER JOIN city ON country.Code = city.CountryCode AND country.Capital = city.ID " +
+                            "WHERE country.Continent like '"+Continent +"'"+
+                            " ORDER BY city.Population DESC "+
+                            "LIMIT "+ N;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract capital city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<CapitalCity>();
+            while (rset.next())
+            {
+                CapitalCity capitalCity = new CapitalCity();
+                capitalCity.setName(rset.getString("city.Name"));
+                capitalCity.setCountry(rset.getString("country.name"));
+                capitalCity.setPopulation(rset.getLong("city.Population"));
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital City details");
+            return null;
+        }
+    }
+    /**
      * Gets top n capital cities region.
      *
      * @param Region the region

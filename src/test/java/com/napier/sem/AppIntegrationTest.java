@@ -269,8 +269,8 @@ public class AppIntegrationTest {
         });
     }
     @Test
-    void TopNCapitalCitiesIntegrationTest() {
-        ArrayList<CapitalCity> capitalCities = app.getTopNCapitalCities(6);
+    void TopNContinentCapitalCitiesIntegrationTest() {
+        ArrayList<CapitalCity> capitalCities = app.getTopNContinentCapitalCities("Africa", 6);
 
         assertEquals(6, capitalCities.size());
 
