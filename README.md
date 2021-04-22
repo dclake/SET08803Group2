@@ -26,7 +26,7 @@
 | 3     | All the countries in a region organised by largest population to smallest. | Yes | ![countriesbyregion](https://user-images.githubusercontent.com/72627750/115641402-00d47200-a2e7-11eb-825c-a71a051fcf15.PNG) |
 | 4     | The top N populated countries in the world where N is provided by the user.| Yes | ![topNCountries](https://user-images.githubusercontent.com/72627750/115644338-6aa34a80-a2ec-11eb-850b-eb05e32e71f9.PNG) |
 | 5     | The top N populated countries in a continent where N is provided by the user.| Yes | ![topNcountriesbycontinent](https://user-images.githubusercontent.com/72627750/115646968-12227c00-a2f1-11eb-85e8-42d40153a626.PNG) |
-| 6     | The top N populated countries in a region where N is provided by the user. | Yes | image |
+| 6     | The top N populated countries in a region where N is provided by the user. | Yes | ![topNCountriesbyRegion](https://user-images.githubusercontent.com/72627750/115648152-fa4bf780-a2f2-11eb-950e-894fd02194f6.PNG) |
 | 7     | All the cities in the world organised by largest population to smallest. | Yes | image |
 | 8     | All the cities in a continent organised by largest population to smallest. | Yes | image |
 | 9     | All the cities in a region organised by largest population to smallest. | Yes | image |
