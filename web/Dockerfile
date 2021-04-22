@@ -1,3 +1,4 @@
-FROM nginx
+FROM nginx:latest
 COPY content /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80/tcp
