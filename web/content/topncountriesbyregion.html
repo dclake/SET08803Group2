@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Top N Countries By Continent Population</title>
+    <title>Top N Countries By Region Population</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,19 +25,37 @@
     </style>
 </head>
 <body>
-<h1>Top N Countries By Continent Population</h1>
-<form action="/topncountriesbycontinent.html">
+<h1>Top N Countries By Region Population</h1>
+<form action="/topncountriesbyregion.html">
     <label for=n>Display how many countries:</label>
     <input type="number" id=n name=n value="10">
-    <label for="continent">Choose a Continent:</label>
-    <select id="continent" name="continent">
-        <option value="Africa">Africa</option>
-        <option value="Antarctica" selected="selected">Antarctica</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
+    <label for="region">Choose a Region:</label>
+    <select id="region" name="region">
+        <option value="Antarctica">Antarctica</option>
+        <option value="Australia and New Zealand" selected="selected">Australia and New Zealand</option>
+        <option value="Baltic Countries">Baltic Countries</option>
+        <option value="British Islands">British Islands</option>
+        <option value="Caribbean">Caribbean</option>
+        <option value="Central Africa">Central Africa</option>
+        <option value="Central America">Central America</option>
+        <option value="Eastern Africa">Eastern Africa</option>
+        <option value="Eastern Asia">Eastern Asia</option>
+        <option value="Eastern Europe">Eastern Europe</option>
+        <option value="Melanesia">Melanesia</option>
+        <option value="Micronesia">Micronesia</option>
+        <option value="Micronesia/Caribbean">Micronesia/Caribbean</option>
+        <option value="Middle East">Middle East</option>
+        <option value="Nordic Countries">Nordic Countries</option>
         <option value="North America">North America</option>
-        <option value="Oceania">Oceania</option>
+        <option value="Northern Africa">Northern Africa</option>
+        <option value="Polynesia">Polynesia</option>
         <option value="South America">South America</option>
+        <option value="Southeast Asia">Southeast Asia</option>
+        <option value="Southern Africa">Southern Africa</option>
+        <option value="Southern and Central Asia">Southern and Central Asia</option>
+        <option value="Southern Europe">Southern Europe</option>
+        <option value="Western Africa">Western Africa</option>
+        <option value="Western Europe">Western Europe</option>
     </select>
     <input type="submit" value="Submit">
 </form>
@@ -50,9 +68,9 @@
 <script>
     var urlParams = new URLSearchParams(window.location.search);
     var n = urlParams.get('n');
-    var continent = urlParams.get('continent');
+    var region = urlParams.get('region');
 
-    var URL = "http://" + window.location.hostname + "/app/topncountriesbycontinent?N=" + n +"&continent="+continent;
+    var URL = "http://" + window.location.hostname + "/app/topncountriesbyregion?N=" + n +"&continent="+region;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
