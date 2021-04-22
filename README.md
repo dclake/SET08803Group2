@@ -21,8 +21,8 @@
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
-| 1     | All the countries in the world organised by largest population to smallest. | Yes | ![screenshot](https://user-images.githubusercontent.com/72627750/115640838-db933400-a2e5-11eb-927d-f5469e9de889.PNG) |
-| 2     | All the countries in a continent organised by largest population to smallest. | Yes | image  |
+| 1     | All the countries in the world organised by largest population to smallest. | Yes | ![All Countries Population](https://user-images.githubusercontent.com/72627750/115640838-db933400-a2e5-11eb-927d-f5469e9de889.PNG) |
+| 2     | All the countries in a continent organised by largest population to smallest. | Yes | ![Country Population by Continent](https://user-images.githubusercontent.com/72627750/115641139-7d1a8580-a2e6-11eb-8fd7-3bb3fdb16da3.PNG)  |
 | 3     | All the countries in a region organised by largest population to smallest. | Yes | image |
 | 4     | The top N populated countries in the world where N is provided by the user.| Yes | image |
 | 5     | The top N populated countries in a continent where N is provided by the user.| Yes | image |
