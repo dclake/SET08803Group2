@@ -406,7 +406,7 @@ public class App {
     /**
      * Gets continent cities.
      *
-     * @param Continent the continent
+     * @param continent the continent
      * @return the continent cities
      */
     @RequestMapping("continentcities")
@@ -811,7 +811,7 @@ public class App {
      * @return the world capital cities
      */
     @RequestMapping("worldcapitalcities")
-    public  static ArrayList<City> getWorldCapitalCities()
+    public  static ArrayList<CapitalCity> getWorldCapitalCities()
     {
         try
         {
@@ -827,17 +827,16 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract capital city information
-            ArrayList<City> cities = new ArrayList<City>();
+            ArrayList<CapitalCity> capitalcities = new ArrayList<CapitalCity>();
             while (rset.next())
             {
-                City city = new City();
-                city.setCity_name(rset.getString("city.Name"));
-                city.setCountry_name(rset.getString("country.name"));
-                city.setDistrict(rset.getString("city.District"));
-                city.setPopulation(rset.getInt("city.Population"));
-                cities.add(city);
+                CapitalCity capitalCity = new CapitalCity();
+                capitalCity.setName(rset.getString("city.Name"));
+                capitalCity.setCountry(rset.getString("country.name"));
+                capitalCity.setPopulation(rset.getLong("city.Population"));
+                capitalcities.add(capitalCity);
             }
-            return cities;
+            return capitalcities;
         }
         catch (Exception e)
         {
@@ -853,8 +852,8 @@ public class App {
      * @param continent the continent
      * @return the continent capital cities
      */
-    @RequestMapping("continentcaptitalcities")
-    public  static ArrayList<City> getContinentCapitalCities(@RequestParam String continent)
+    @RequestMapping("continentcapitalcities")
+    public  static ArrayList<CapitalCity> getContinentCapitalCities(@RequestParam String continent)
     {
         try
         {
@@ -871,17 +870,16 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract capital city information
-            ArrayList<City> cities = new ArrayList<City>();
+            ArrayList<CapitalCity> capitalCities = new ArrayList<CapitalCity>();
             while (rset.next())
             {
-                City city = new City();
-                city.setCity_name(rset.getString("city.Name"));
-                city.setCountry_name(rset.getString("country.name"));
-                city.setDistrict(rset.getString("city.District"));
-                city.setPopulation(rset.getInt("city.Population"));
-                cities.add(city);
+                CapitalCity capitalCity = new CapitalCity();
+                capitalCity.setName(rset.getString("city.Name"));
+                capitalCity.setCountry(rset.getString("country.name"));
+                capitalCity.setPopulation(rset.getLong("city.Population"));
+                capitalCities.add(capitalCity);
             }
-            return cities;
+            return capitalCities;
         }
         catch (Exception e)
         {
@@ -1258,7 +1256,27 @@ public class App {
             System.out.println(cities_string);
         }
     }
-
+    public static void printCapitalCities(ArrayList<CapitalCity> capitalcities)
+    {
+        // Check countries is not null
+        if (capitalcities == null) {
+            System.out.println("No Capital Cities");
+            return;
+        }
+        // Print header
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        System.out.println(String.format("%-35s %-40s %-15s", "City", "Country", "Population"));
+        System.out.println("___________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (CapitalCity capitalCity : capitalcities)
+        {
+            if (capitalCity == null)
+                continue;
+            String capitalcities_string =
+                    capitalCity.toString();
+            System.out.println(capitalcities_string);
+        }
+    }
     /**
      * Print city dwellers.
      *
