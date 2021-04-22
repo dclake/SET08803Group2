@@ -939,7 +939,7 @@ public class App {
      * @return the top n capital cities
      */
     @RequestMapping("topncapitalcities")
-    public  static ArrayList<City> getTopNCapitalCities(@RequestParam int N)
+    public  static ArrayList<CapitalCity> getTopNCapitalCities(@RequestParam int N)
     {
         try
         {
@@ -956,17 +956,16 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract capital city information
-            ArrayList<City> cities = new ArrayList<City>();
+            ArrayList<CapitalCity> capitalCities = new ArrayList<CapitalCity>();
             while (rset.next())
             {
-                City city = new City();
-                city.setCity_name(rset.getString("city.Name"));
-                city.setCountry_name(rset.getString("country.name"));
-                city.setDistrict(rset.getString("city.District"));
-                city.setPopulation(rset.getInt("city.Population"));
-                cities.add(city);
+                CapitalCity capitalCity = new CapitalCity();
+                capitalCity.setName(rset.getString("city.Name"));
+                capitalCity.setCountry(rset.getString("country.name"));
+                capitalCity.setPopulation(rset.getLong("city.Population"));
+                capitalCities.add(capitalCity);
             }
-            return cities;
+            return capitalCities;
         }
         catch (Exception e)
         {

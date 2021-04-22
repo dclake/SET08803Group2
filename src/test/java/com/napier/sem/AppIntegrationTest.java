@@ -270,15 +270,14 @@ public class AppIntegrationTest {
     }
     @Test
     void TopNCapitalCitiesIntegrationTest() {
-        ArrayList<City> cities = app.getTopNCapitalCities(6);
+        ArrayList<CapitalCity> capitalCities = app.getTopNCapitalCities(6);
 
-        assertEquals(6, cities.size());
+        assertEquals(6, capitalCities.size());
 
-        cities.forEach(City -> {
-            assertNotNull(City.getCity_name());
-            assertNotNull(City.getCountry_name());
-            assertNotNull(City.getDistrict());
-            assertNotNull(City.getPopulation());
+        capitalCities.forEach(CapitalCity -> {
+            assertNotNull(CapitalCity.getName());
+            assertNotNull(CapitalCity.getCountry());
+            assertNotNull(CapitalCity.getPopulation());
         });
     }
     @Test
