@@ -32,7 +32,7 @@
 | 9     | All the cities in a region organised by largest population to smallest. | Yes | ![citiesbyregion](https://user-images.githubusercontent.com/72627750/115650302-f4f0ac00-a2f6-11eb-9ac3-a97f5a51ed8e.PNG)|
 | 10    | All the cities in a country organised by largest population to smallest. | Yes | ![citiesbycountry](https://user-images.githubusercontent.com/72627750/115651064-7563dc80-a2f8-11eb-86dd-21037f1dbf8a.PNG)|
 | 11    | All the cities in a district organised by largest population to smallest. | Yes |![citiesbydistrict](https://user-images.githubusercontent.com/72627750/115651751-cc1de600-a2f9-11eb-9d3a-451f98050d4b.PNG)|
-| 12    | The top N populated cities in the world where N is provided by the user. | Yes | image |
+| 12    | The top N populated cities in the world where N is provided by the user. | Yes | ![topNcities](https://user-images.githubusercontent.com/72627750/115652443-469b3580-a2fb-11eb-9e22-5276fb12467d.PNG)|
 | 13    | The top N populated cities in a continent where N is provided by the user. | Yes | image |
 | 14    | The top N populated cities in a region where N is provided by the user. | Yes | image |
 | 15    | The top N populated cities in a country where N is provided by the user. | Yes | image |
