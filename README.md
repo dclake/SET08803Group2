@@ -40,7 +40,7 @@
 | 17    | All the capital cities in the world organised by largest population to smallest. | Yes | ![allcapitalcities](https://user-images.githubusercontent.com/72627750/115662815-8a973600-a30d-11eb-8474-1f1c720e3a16.PNG)|
 | 18    | All the capital cities in a continent organised by largest population to smallest. | Yes | ![captitalcitiesbycontinent](https://user-images.githubusercontent.com/72627750/115663363-625c0700-a30e-11eb-9da5-7de920bfc95e.PNG)|
 | 19    | All the capital cities in a region organised by largest to smallest. | Yes | ![capitalcitesbyregion](https://user-images.githubusercontent.com/72627750/115664744-39d50c80-a310-11eb-893a-2eda6459f359.PNG)|
-| 20    | The top N populated capital cities in the world where N is provided by the user.
+| 20    | The top N populated capital cities in the world where N is provided by the user. | Yes | ![topncapitalcities](https://user-images.githubusercontent.com/72627750/115665478-5c1b5a00-a311-11eb-971e-45cfe091f25f.PNG)|
 | 21    | The top N populated capital cities in a continent where N is provided by the user.
 | 22    | The top N populated capital cities in a region where N is provided by the user.
 | 23    | The population of people, people living in cities, and people not living in cities in each continent.
