@@ -52,5 +52,6 @@
 | 29    | The population of a country.
 | 30    | The population of a district.
 | 31    | The population of a city.
-| 32    | The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic. |
+| 32    | The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic. | Yes | ![languages](https://user-images.githubusercontent.com/72627750/115697708-ccd26e80-a331-11eb-8dbb-d3d8b00bac47.PNG)
+
 
