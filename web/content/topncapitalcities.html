@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Top N World Cities Population</title>
+    <title>Top N World Capital Cities Population</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,14 +25,14 @@
     </style>
 </head>
 <body>
-<h1>Top N World Cities Population</h1>
-<form action="/topncities.html">
+<h1>Top N World Capital Cities Population</h1>
+<form action="/topncapitalcities.html">
     <label for=n>Display how many cities:</label>
     <input type="number" id=n name=n value="10">
     <input type="submit" value="Submit">
 </form>
 </br>
-<h2>City Data</h2>
+<h2>Capital City Data</h2>
 </br>
 <!--<div class="urldata">Waiting</div>-->
 <div class="showData">...</div>
@@ -41,7 +41,7 @@
     var urlParams = new URLSearchParams(window.location.search);
     var n = urlParams.get('n');
 
-   var URL = "http://" + window.location.hostname + "/app/topnworldcities?N=" + n;
+   var URL = "http://" + window.location.hostname + "/app/topncapitalcities?N=" + n;
     //show url
 
     $.getJSON(URL, function(data) {
