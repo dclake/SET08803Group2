@@ -759,6 +759,14 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets top n cities in district.
+     *
+     * @param District the district
+     * @param N        the n
+     * @return the top n cities in district
+     */
     @RequestMapping("topncitiesindistrict")
     public  static ArrayList<City> getTopNCitiesInDistrict(@RequestParam String District, int N)
     {
@@ -771,7 +779,7 @@ public class App {
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
                             "FROM world.city \n" +
                             "Join world.country on city.CountryCode = country.Code\n" +
-                            "where country.Name like '" + District + "'\n" +
+                            "where city.District like '" + District + "'\n" +
                             "ORDER BY Population desc\n" +
                             "LIMIT 0, "+ N;
             // Execute SQL statement
