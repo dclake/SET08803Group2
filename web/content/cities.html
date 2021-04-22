@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Countries By Population</title>
+    <title>All World Cities By Population</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-<h1>All Countries By Population</h1>
+<h1>All World Cities By Population</h1>
 <div class="showData">Waiting</div>
 <div class="showData">...</div>
 </body>
@@ -33,7 +33,7 @@
     var urlParams = new URLSearchParams(window.location.search);
     var title = urlParams.get('title');
 
-    var URL = "http://" + window.location.hostname + "/app/countries";
+    var URL = "http://" + window.location.hostname + "/app/worldcities";
 
     //show url
 

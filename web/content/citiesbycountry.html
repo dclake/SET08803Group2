@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Countries By Population</title>
+    <title>Cities By Population and Country</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,15 +25,23 @@
     </style>
 </head>
 <body>
-<h1>All Countries By Population</h1>
-<div class="showData">Waiting</div>
+<h1>Cities by Population & Country</h1>
+<form action="/citiesbycountry.html">
+    <label for="country">Choose a Country:</label>
+    <input type="text" id=country name=country value="Haiti">
+    <input type="submit" value="Submit">
+</form>
+</br>
+<h2>City Data</h2>
+</br>
+<!--<div class="urldata">Waiting</div>-->
 <div class="showData">...</div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var title = urlParams.get('title');
+    var country = urlParams.get('country');
 
-    var URL = "http://" + window.location.hostname + "/app/countries";
+    var URL = "http://" + window.location.hostname + "/app/countrycities?Country=" + country;
 
     //show url
 

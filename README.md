@@ -21,18 +21,18 @@
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
-| 1     | All the countries in the world organised by largest population to smallest. | Yes | image |
-| 2     | All the countries in a continent organised by largest population to smallest. | Yes | image  |
-| 3     | All the countries in a region organised by largest population to smallest. | Yes | image |
-| 4     | The top N populated countries in the world where N is provided by the user.| Yes | image |
-| 5     | The top N populated countries in a continent where N is provided by the user.| Yes | image |
-| 6     | The top N populated countries in a region where N is provided by the user. | Yes | image |
-| 7     | All the cities in the world organised by largest population to smallest. | Yes | image |
-| 8     | All the cities in a continent organised by largest population to smallest. | Yes | image |
-| 9     | All the cities in a region organised by largest population to smallest. | Yes | image |
-| 10    | All the cities in a country organised by largest population to smallest. | Yes | image |
-| 11    | All the cities in a district organised by largest population to smallest. | Yes | image |
-| 12    | The top N populated cities in the world where N is provided by the user. | Yes | image |
+| 1     | All the countries in the world organised by largest population to smallest. | Yes | ![All Countries Population](https://user-images.githubusercontent.com/72627750/115640838-db933400-a2e5-11eb-927d-f5469e9de889.PNG) |
+| 2     | All the countries in a continent organised by largest population to smallest. | Yes | ![Country Population by Continent](https://user-images.githubusercontent.com/72627750/115641139-7d1a8580-a2e6-11eb-8fd7-3bb3fdb16da3.PNG)  |
+| 3     | All the countries in a region organised by largest population to smallest. | Yes | ![countriesbyregion](https://user-images.githubusercontent.com/72627750/115641402-00d47200-a2e7-11eb-825c-a71a051fcf15.PNG) |
+| 4     | The top N populated countries in the world where N is provided by the user.| Yes | ![topNCountries](https://user-images.githubusercontent.com/72627750/115644338-6aa34a80-a2ec-11eb-850b-eb05e32e71f9.PNG) |
+| 5     | The top N populated countries in a continent where N is provided by the user.| Yes | ![topNcountriesbycontinent](https://user-images.githubusercontent.com/72627750/115646968-12227c00-a2f1-11eb-85e8-42d40153a626.PNG) |
+| 6     | The top N populated countries in a region where N is provided by the user. | Yes | ![topNCountriesbyRegion](https://user-images.githubusercontent.com/72627750/115648152-fa4bf780-a2f2-11eb-950e-894fd02194f6.PNG) |
+| 7     | All the cities in the world organised by largest population to smallest. | Yes | ![allcities](https://user-images.githubusercontent.com/72627750/115648800-143a0a00-a2f4-11eb-9aff-6c133450678e.PNG)|
+| 8     | All the cities in a continent organised by largest population to smallest. | Yes | ![citiesbycontinent](https://user-images.githubusercontent.com/72627750/115649492-6b8caa00-a2f5-11eb-8344-ca6088b3edb8.PNG) |
+| 9     | All the cities in a region organised by largest population to smallest. | Yes | ![citiesbyregion](https://user-images.githubusercontent.com/72627750/115650302-f4f0ac00-a2f6-11eb-9ac3-a97f5a51ed8e.PNG)|
+| 10    | All the cities in a country organised by largest population to smallest. | Yes | ![citiesbycountry](https://user-images.githubusercontent.com/72627750/115651064-7563dc80-a2f8-11eb-86dd-21037f1dbf8a.PNG)|
+| 11    | All the cities in a district organised by largest population to smallest. | Yes |![citiesbydistrict](https://user-images.githubusercontent.com/72627750/115651751-cc1de600-a2f9-11eb-9d3a-451f98050d4b.PNG)|
+| 12    | The top N populated cities in the world where N is provided by the user. | Yes | ![topNcities](https://user-images.githubusercontent.com/72627750/115652443-469b3580-a2fb-11eb-9e22-5276fb12467d.PNG)|
 | 13    | The top N populated cities in a continent where N is provided by the user. | Yes | image |
 | 14    | The top N populated cities in a region where N is provided by the user. | Yes | image |
 | 15    | The top N populated cities in a country where N is provided by the user. | Yes | image |

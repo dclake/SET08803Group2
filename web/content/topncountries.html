@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Countries By Population</title>
+    <title>Top N Countries Population</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,16 +25,23 @@
     </style>
 </head>
 <body>
-<h1>All Countries By Population</h1>
-<div class="showData">Waiting</div>
+<h1>Top N Countries Population</h1>
+<form action="/topncountries.html">
+    <label for=n>Display how many countries:</label>
+    <input type="number" id=n name=n value="10">
+    <input type="submit" value="Submit">
+</form>
+</br>
+<h2>Country Data</h2>
+</br>
+<!--<div class="urldata">Waiting</div>-->
 <div class="showData">...</div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var title = urlParams.get('title');
+    var n = urlParams.get('n');
 
-    var URL = "http://" + window.location.hostname + "/app/countries";
-
+   var URL = "http://" + window.location.hostname + "/app/topncountriesbypopulation?N=" + n;
     //show url
 
     $.getJSON(URL, function(data) {

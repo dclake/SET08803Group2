@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Countries By Population</title>
+    <title>Cities By Population and District</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,17 +25,23 @@
     </style>
 </head>
 <body>
-<h1>All Countries By Population</h1>
-<div class="showData">Waiting</div>
+<h1>Cities by Population & District</h1>
+<form action="/citiesbydistrict.html">
+    <label for="district">Choose a District:</label>
+    <input type="text" id=district name=district value="New York">
+    <input type="submit" value="Submit">
+</form>
+</br>
+<h2>City Data</h2>
+</br>
+<!--<div class="urldata">Waiting</div>-->
 <div class="showData">...</div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var title = urlParams.get('title');
+    var district = urlParams.get('district');
 
-    var URL = "http://" + window.location.hostname + "/app/countries";
-
-    //show url
+    var URL = "http://" + window.location.hostname + "/app/districtcities?District=" + district;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

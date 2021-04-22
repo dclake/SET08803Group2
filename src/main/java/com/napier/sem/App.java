@@ -1,11 +1,10 @@
 package com.napier.sem;
 
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,8 +12,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-//@SpringBootApplication
-//@RestController
+@SpringBootApplication
+@RestController
 public class App {
     /**
      * Connection to MySQL database.
@@ -81,11 +80,13 @@ public class App {
         }
     }
 
+
     /**
-     * Gets all Countries and Polulations from largest to smallest.
-     * @return A list of all countries and populations, or null if there is an error.
+     * Gets country by population.
+     *
+     * @return the country by population
      */
-    //@RequestMapping("countries")
+    @RequestMapping("countries")
     public ArrayList<Country> getCountryByPopulation()
     {
         try
@@ -123,12 +124,18 @@ public class App {
             return null;
         }
     }
-    //@RequestMapping("countriesbycontinent")
-    public ArrayList<Country> getCountryByContinent( String continent)
+
+    /**
+     * Gets country by continent.
+     *
+     * @param continent the continent
+     * @return the country by continent
+     */
+    @RequestMapping("countriesbycontinent")
+    public ArrayList<Country> getCountryByContinent(@RequestParam String continent)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -163,11 +170,19 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByContinent(  String continent, int N)
+
+    /**
+     * Gets top n country by continent.
+     *
+     * @param continent the continent
+     * @param N         the n
+     * @return the top n country by continent
+     */
+    @RequestMapping("topncountriesbycontinent")
+    public ArrayList<Country> getTopNCountryByContinent(@RequestParam  String continent, int N)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -203,12 +218,18 @@ public class App {
             return null;
         }
     }
-   // @RequestMapping("countriesbyregion")
-    public ArrayList<Country> getCountryByRegion(  String region)
+
+    /**
+     * Gets country by region.
+     *
+     * @param region the region
+     * @return the country by region
+     */
+    @RequestMapping("countriesbyregion")
+    public ArrayList<Country> getCountryByRegion(@RequestParam String region)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -243,11 +264,19 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByRegion(  String region, int N)
+
+    /**
+     * Gets top n country by region.
+     *
+     * @param region the region
+     * @param N      the n
+     * @return the top n country by region
+     */
+    @RequestMapping("topncountrybyregion")
+    public ArrayList<Country> getTopNCountryByRegion(@RequestParam  String region, int N)
     {
         try
         {
-            //System.out.println("Request for all countries in " + continent +);
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -283,7 +312,15 @@ public class App {
             return null;
         }
     }
-    public ArrayList<Country> getTopNCountryByPopulation(int N)
+
+    /**
+     * Gets top n country by population.
+     *
+     * @param N the n
+     * @return the top n country by population
+     */
+    @RequestMapping("topncountriesbypopulation")
+    public ArrayList<Country> getTopNCountryByPopulation(@RequestParam int N)
     {
         try
         {
@@ -321,6 +358,13 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets world cities.
+     *
+     * @return the world cities
+     */
+    @RequestMapping("worldcities")
     public  static ArrayList<City> getWorldCities()
     {
         try
@@ -338,7 +382,7 @@ public class App {
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -358,26 +402,31 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getContinentCities(String Continent)
+
+    /**
+     * Gets continent cities.
+     *
+     * @param Continent the continent
+     * @return the continent cities
+     */
+    @RequestMapping("continentcities")
+    public  static ArrayList<City> getContinentCities(@RequestParam String continent)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
                             "FROM world.city \n" +
                             "Join world.country on city.CountryCode = country.Code\n" +
-                            "where country.Continent like '" + Continent + "'\n" +
+                            "where country.Continent like '" + continent + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -397,14 +446,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getRegionCities(String Region)
+
+    /**
+     * Gets region cities.
+     *
+     * @param Region the region
+     * @return the region cities
+     */
+    @RequestMapping("regioncities")
+    public  static ArrayList<City> getRegionCities(@RequestParam String Region)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -413,10 +468,9 @@ public class App {
                             "where country.Region like '" + Region + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -436,14 +490,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getDistrictCities(String District)
+
+    /**
+     * Gets district cities.
+     *
+     * @param District the district
+     * @return the district cities
+     */
+    @RequestMapping("districtcities")
+    public  static ArrayList<City> getDistrictCities(@RequestParam String District)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -452,10 +512,9 @@ public class App {
                             "where city.District like '" + District + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -475,14 +534,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getCountriesCities(String Country)
+
+    /**
+     * Gets countries cities.
+     *
+     * @param Country the country
+     * @return the countries cities
+     */
+    @RequestMapping("countrycities")
+    public  static ArrayList<City> getCountriesCities(@RequestParam String Country)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -491,10 +556,9 @@ public class App {
                             "where country.Name like '" + Country + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -521,14 +585,13 @@ public class App {
      * @param N the n
      * @return the top n world cities
      */
-    public  static ArrayList<City> getTopNWorldCities(int N)
+    @RequestMapping("topnworldcities")
+    public  static ArrayList<City> getTopNWorldCities(@RequestParam int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -537,10 +600,9 @@ public class App {
                             "ORDER BY Population desc\n" +
                             "LIMIT 0, "+ N;
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -560,14 +622,21 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getTopNCitiesInContinent(String Continent, int N)
+
+    /**
+     * Gets top n cities in continent.
+     *
+     * @param Continent the continent
+     * @param N         the n
+     * @return the top n cities in continent
+     */
+    @RequestMapping("topncitiesincontinent")
+    public  static ArrayList<City> getTopNCitiesInContinent(@RequestParam String Continent, int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -577,10 +646,9 @@ public class App {
                             "ORDER BY Population desc\n" +
                             "LIMIT 0, "+ N;
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -600,14 +668,21 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getTopNCitiesInRegion(String Region, int N)
+
+    /**
+     * Gets top n cities in region.
+     *
+     * @param Region the region
+     * @param N      the n
+     * @return the top n cities in region
+     */
+    @RequestMapping("topncitiesinregion")
+    public  static ArrayList<City> getTopNCitiesInRegion(@RequestParam String Region, int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -617,10 +692,9 @@ public class App {
                             "ORDER BY Population desc\n" +
                             "LIMIT 0, "+ N;
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -640,14 +714,21 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getTopNCitiesInCountry(String Country, int N)
+
+    /**
+     * Gets top n cities in country.
+     *
+     * @param Country the country
+     * @param N       the n
+     * @return the top n cities in country
+     */
+    @RequestMapping("topncitiesincounty")
+    public  static ArrayList<City> getTopNCitiesInCountry(@RequestParam String Country, int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -656,11 +737,9 @@ public class App {
                             "where country.Name like '" + Country + "'\n" +
                             "ORDER BY Population desc\n" +
                             "LIMIT 0, "+ N;
-
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -680,14 +759,19 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets world capital cities.
+     *
+     * @return the world capital cities
+     */
+    @RequestMapping("worldcapitalcities")
     public  static ArrayList<City> getWorldCapitalCities()
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -695,10 +779,9 @@ public class App {
                             "Join world.country on city.ID = country.Capital\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract capital city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -718,14 +801,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getContinentCapitalCities(String continent)
+
+    /**
+     * Gets continent capital cities.
+     *
+     * @param continent the continent
+     * @return the continent capital cities
+     */
+    @RequestMapping("continentcaptitalcities")
+    public  static ArrayList<City> getContinentCapitalCities(@RequestParam String continent)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
@@ -734,10 +823,9 @@ public class App {
                             "where country.Continent like '" +continent + "'\n" +
                             "ORDER BY Population desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract capital city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -757,14 +845,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getRegionCapitalCities(String region)
+
+    /**
+     * Gets region capital cities.
+     *
+     * @param region the region
+     * @return the region capital cities
+     */
+    @RequestMapping("regioncapitalcites")
+    public  static ArrayList<City> getRegionCapitalCities(@RequestParam String region)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Name,city.Name,city.District, city.Population " +
@@ -773,10 +867,9 @@ public class App {
                             "WHERE country.Region like '" + region +"' " +
                             "ORDER BY city.Population DESC";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract capital city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -796,14 +889,20 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getTopNCapitalCities(int N)
+
+    /**
+     * Gets top n capital cities.
+     *
+     * @param N the n
+     * @return the top n capital cities
+     */
+    @RequestMapping("topncapitalcities")
+    public  static ArrayList<City> getTopNCapitalCities(@RequestParam int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
-            //Statement stmt = con.createStatement();
-            Statement stmt = App.getCon().createStatement();
+            Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Name,city.Name,city.District, city.Population " +
@@ -812,10 +911,9 @@ public class App {
                             "ORDER BY city.Population DESC "+
                             "LIMIT "+ N;
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract capital city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -835,14 +933,21 @@ public class App {
             return null;
         }
     }
-    public  static ArrayList<City> getTopNCapitalCitiesRegion(String Region,int N)
+
+    /**
+     * Gets top n capital cities region.
+     *
+     * @param Region the region
+     * @param N      the n
+     * @return the top n capital cities region
+     */
+    @RequestMapping("topnregioncapital")
+    public  static ArrayList<City> getTopNCapitalCitiesRegion(@RequestParam String Region,int N)
     {
         try
         {
             // Create an SQL statement
-            //Connection con = null;
             Statement stmt = con.createStatement();
-            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Name,city.Name,city.District, city.Population " +
@@ -852,10 +957,9 @@ public class App {
                             "ORDER BY city.Population DESC "+
                             "LIMIT "+ N;
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract capital city information
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next())
             {
@@ -875,14 +979,19 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets city dwellers continent.
+     *
+     * @return the city dwellers continent
+     */
+    @RequestMapping("citydwellersbycontinent")
     public  static ArrayList<CityDwellers> getCityDwellersContinent()
     {
         try
         {
             // Create an SQL statement
-           // Connection con = null;
             Statement stmt = con.createStatement();
-            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "Select qry.Continent, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers/qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) /qry.TotalPopulation)*100) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
@@ -890,10 +999,9 @@ public class App {
                             "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Continent= cnt.Continent) as CityDwellers\n" +
                             "FROM country as cnt GROUP BY cnt.Continent) as qry";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract City Dwellers information
             ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
             while (rset.next())
             {
@@ -915,14 +1023,19 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets city dwellers region.
+     *
+     * @return the city dwellers region
+     */
+    @RequestMapping("citydwellersbyregion")
     public  static ArrayList<CityDwellers> getCityDwellersRegion()
     {
         try
         {
             // Create an SQL statement
-            // Connection con = null;
             Statement stmt = con.createStatement();
-            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "Select qry.Region, qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers /qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) *100)/qry.TotalPopulation) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
@@ -930,10 +1043,9 @@ public class App {
                             "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Region= cnt.Region) as CityDwellers\n" +
                             "FROM country as cnt GROUP BY cnt.Region) as qry";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city dweller information
             ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
             while (rset.next())
             {
@@ -955,14 +1067,19 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets city dwellers country.
+     *
+     * @return the city dwellers country
+     */
+    @RequestMapping("citydwellersbycountry")
     public  static ArrayList<CityDwellers> getCityDwellersCountry()
     {
         try
         {
             // Create an SQL statement
-            // Connection con = null;
             Statement stmt = con.createStatement();
-            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "Select qry.Name,  qry.TotalPopulation,qry.CityDwellers, ((qry.CityDwellers /qry.TotalPopulation)*100) as PercentageCityDwellers,(((qry.TotalPopulation-qry.CityDwellers) *100)/qry.TotalPopulation) as PercentageNonCityDwellers, qry.TotalPopulation-qry.CityDwellers as NonCityDwellers  from\n" +
@@ -970,10 +1087,9 @@ public class App {
                             "(SELECT SUM(city.Population) FROM city INNER JOIN country ON city.CountryCode = country.`Code` where country.Name= cnt.Name) as CityDwellers\n" +
                             "FROM country as cnt GROUP BY cnt.Name) as qry";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract city dweller information
             ArrayList<CityDwellers> entries = new ArrayList<CityDwellers>();
             while (rset.next())
             {
@@ -995,14 +1111,19 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets languages.
+     *
+     * @return the languages
+     */
+    @RequestMapping("languages")
     public  static ArrayList<Language> getLanguages()
     {
         try
         {
             // Create an SQL statement
-            // Connection con = null;
             Statement stmt = con.createStatement();
-            //Statement stmt = App.getCon().createStatement();
             // Create string for SQL statement
             String strSelect =
                     "Select q.Language,q.TotalSpeakers,(q.TotalSpeakers/ (Select SUM(country.Population) from country))*100 as WorldPercent from\n" +
@@ -1018,10 +1139,9 @@ public class App {
                             " where countrylanguage.Language in (\"Chinese\",\"English\",\"Hindi\",\"Spanish\",\"Arabic\") GROUP BY countrylanguage.Language) as q\n" +
                             " order by WorldPercent desc";
 
-            System.out.println(strSelect);
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract country information
+            // Extract language information
             ArrayList<Language> languages = new ArrayList<Language>();
             while (rset.next())
             {
@@ -1067,6 +1187,11 @@ public class App {
         }
     }
 
+    /**
+     * Print cities.
+     *
+     * @param cities the cities
+     */
     public static void printCities(ArrayList<City> cities)
     {
         // Check countries is not null
@@ -1088,6 +1213,12 @@ public class App {
             System.out.println(cities_string);
         }
     }
+
+    /**
+     * Print city dwellers.
+     *
+     * @param entries the entries
+     */
     public static void printCityDwellers(ArrayList<CityDwellers> entries)
     {
         // Check entries is not null
@@ -1109,6 +1240,12 @@ public class App {
             System.out.println(citydwellers_string);
         }
     }
+
+    /**
+     * Print languages.
+     *
+     * @param languages the languages
+     */
     public static void printLanguages(ArrayList<Language> languages)
     {
         // Check entries is not null
@@ -1130,37 +1267,34 @@ public class App {
             System.out.println(Language_string);
         }
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws InterruptedException the interrupted exception
+     * @throws IOException          the io exception
+     */
     public static void main(String[] args) throws InterruptedException, IOException  {
         // Connect to database
         if (args.length < 1)
         {
             //connect();
             // Create new Application
-            App a = new App();
+           // App a = new App();
 
             // Connect to database
-            a.connect("localhost:33060");
+            //a.connect("localhost:33060");
+            connect("localhost:33060");
+            
 
-            // Extract country population information
-           // ArrayList<Country> countries = a.getTopNCountryByRegion("Caribbean",6);
-           // ArrayList<City> cities = City.getTopNCitiesInCountry("India",5);
-            ArrayList<Language> languages = a.getLanguages();
-
-            a.printLanguages(languages);
-
-
-
-
-
-                   //  a.printCountries(countries);
-            // City.printCities(cities);
         }
         else
         {
             connect(args[0]);
         }
         //String command = "curl http://app:8080/countriesbyregion?region=Caribbean";
-        // SpringApplication.run(App.class, args);
+        SpringApplication.run(App.class, args);
 
 
 
@@ -1175,18 +1309,8 @@ public class App {
         // Create new Application
         //App a = new App();
 
-        // Connect to database
-        //a.connect();
-
-        // Extract country population information
-        //ArrayList<Country> countries = a.getCountryByPopulation();
-
-        // Test the size of the returned data - should be 239
-        //System.out.println(countries.size());
-        //a.printCountries(countries);
 
 
-        // Disconnect from database
         //a.disconnect();
     }
 
