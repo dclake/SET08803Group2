@@ -44,7 +44,7 @@
 | 21    | The top N populated capital cities in a continent where N is provided by the user. | Yes | ![topncapitalbycontinent](https://user-images.githubusercontent.com/72627750/115694429-d73f3900-a32e-11eb-929e-1ff286602334.PNG)|
 | 22    | The top N populated capital cities in a region where N is provided by the user. | Yes | ![topncapitalbyregion](https://user-images.githubusercontent.com/72627750/115694705-1f5e5b80-a32f-11eb-9457-c7f3652a446d.PNG) |
 | 23    | The population of people, people living in cities, and people not living in cities in each continent. | Yes| ![citydwellersbycontinent](https://user-images.githubusercontent.com/72627750/115696475-baa40080-a330-11eb-87bc-c7bff7ef6df5.PNG) |
-| 24    | The population of people, people living in cities, and people not living in cities in each region.
+| 24    | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![citydwellersregion](https://user-images.githubusercontent.com/72627750/115696709-ee7f2600-a330-11eb-9c35-caf97c69fbc0.PNG) |
 | 25    | The population of people, people living in cities, and people not living in cities in each country.
 | 26    | The population of the world.
 | 27    | The population of a continent.
