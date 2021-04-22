@@ -410,7 +410,7 @@ public class App {
      * @return the continent cities
      */
     @RequestMapping("continentcities")
-    public  static ArrayList<City> getContinentCities(@RequestParam String Continent)
+    public  static ArrayList<City> getContinentCities(@RequestParam String continent)
     {
         try
         {
@@ -421,7 +421,7 @@ public class App {
                     "SELECT city.Name, country.Name, city.District, city.Population \n" +
                             "FROM world.city \n" +
                             "Join world.country on city.CountryCode = country.Code\n" +
-                            "where country.Continent like '" + Continent + "'\n" +
+                            "where country.Continent like '" + continent + "'\n" +
                             "ORDER BY Population desc";
 
             // Execute SQL statement
