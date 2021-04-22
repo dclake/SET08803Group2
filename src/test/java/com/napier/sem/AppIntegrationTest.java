@@ -234,54 +234,50 @@ public class AppIntegrationTest {
     }
     @Test
     void getWorldCapitalCitiesIntegrationTest() {
-        ArrayList<City> cities = app.getWorldCapitalCities();
+        ArrayList<CapitalCity> capitalCities = app.getWorldCapitalCities();
 
-        assertEquals(232, cities.size());
+        assertEquals(232, capitalCities.size());
 
-        cities.forEach(City -> {
-            assertNotNull(City.getCity_name());
-            assertNotNull(City.getCountry_name());
-            assertNotNull(City.getDistrict());
+        capitalCities.forEach(City -> {
+            assertNotNull(City.getName());
+            assertNotNull(City.getCountry());
             assertNotNull(City.getPopulation());
         });
     }
     @Test
     void getContinentCapitalCitiesIntegrationTest() {
-        ArrayList<City> cities = app.getContinentCapitalCities("South America");
+        ArrayList<CapitalCity> capitalCities = app.getContinentCapitalCities("South America");
 
-        assertEquals(14, cities.size());
+        assertEquals(14, capitalCities.size());
 
-        cities.forEach(City -> {
-            assertNotNull(City.getCity_name());
-            assertNotNull(City.getCountry_name());
-            assertNotNull(City.getDistrict());
+        capitalCities.forEach(City -> {
+            assertNotNull(City.getName());
+            assertNotNull(City.getCountry());
             assertNotNull(City.getPopulation());
         });
     }
     @Test
     void getRegionCapitalCitiesIntegrationTest() {
-        ArrayList<City> cities = app.getRegionCapitalCities("Caribbean");
+        ArrayList<CapitalCity> capitalCities = app.getRegionCapitalCities("Caribbean");
 
-        assertEquals(24, cities.size());
+        assertEquals(24, capitalCities.size());
 
-        cities.forEach(City -> {
-            assertNotNull(City.getCity_name());
-            assertNotNull(City.getCountry_name());
-            assertNotNull(City.getDistrict());
-            assertNotNull(City.getPopulation());
+        capitalCities.forEach(CapitalCity -> {
+            assertNotNull(CapitalCity.getName());
+            assertNotNull(CapitalCity.getCountry());
+            assertNotNull(CapitalCity.getPopulation());
         });
     }
     @Test
     void TopNCapitalCitiesIntegrationTest() {
-        ArrayList<City> cities = app.getTopNCapitalCities(6);
+        ArrayList<CapitalCity> capitalCities = app.getTopNCapitalCities(6);
 
-        assertEquals(6, cities.size());
+        assertEquals(6, capitalCities.size());
 
-        cities.forEach(City -> {
-            assertNotNull(City.getCity_name());
-            assertNotNull(City.getCountry_name());
-            assertNotNull(City.getDistrict());
-            assertNotNull(City.getPopulation());
+        capitalCities.forEach(CapitalCity -> {
+            assertNotNull(CapitalCity.getName());
+            assertNotNull(CapitalCity.getCountry());
+            assertNotNull(CapitalCity.getPopulation());
         });
     }
     @Test
